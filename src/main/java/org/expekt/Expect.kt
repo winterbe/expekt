@@ -1,7 +1,43 @@
 package org.expekt
 
-open class Expect<T>(val subject: T?) {
+abstract class ExpectBase<T>(val subject: T?) {
     var negated: Boolean = false
+
+    val `null`: Unit get() {
+        if (subject != null && !negated) {
+            throw AssertionError()
+        }
+        if (subject == null && negated) {
+            throw AssertionError()
+        }
+    }
+
+    fun equal(other: T?) {
+        if (subject != other && !negated) {
+            throw AssertionError()
+        }
+        if (subject == other && negated) {
+            throw AssertionError()
+        }
+    }
+
+    fun satisfy(predicate: (a: T) -> Boolean) {
+        if (subject == null) {
+            throw AssertionError()
+        }
+        val satisfied = predicate(subject)
+        if (!satisfied && !negated) {
+            throw AssertionError()
+        }
+        if (satisfied && negated) {
+            throw AssertionError()
+        }
+    }
+}
+
+
+
+open class Expect<T>(subject: T?) : ExpectBase<T>(subject) {
 
     // language chains
     val to: Expect<T> get() = this
@@ -32,37 +68,6 @@ open class Expect<T>(val subject: T?) {
         return this
     }
 
-    val `null`: Unit get() {
-        if (subject != null && !negated) {
-            throw AssertionError()
-        }
-        if (subject == null && negated) {
-            throw AssertionError()
-        }
-    }
-
-    fun equal(other: Any?) {
-        if (subject != other && !negated) {
-            throw AssertionError()
-        }
-        if (subject == other && negated) {
-            throw AssertionError()
-        }
-    }
-
-    fun satisfy(predicate: (a: T) -> Boolean) {
-        if (subject == null) {
-            throw AssertionError()
-        }
-        val satisfied = predicate(subject)
-        if (!satisfied && !negated) {
-            throw AssertionError()
-        }
-        if (satisfied && negated) {
-            throw AssertionError()
-        }
-    }
-
     fun length(other: Any?) {
 
     }
@@ -76,20 +81,48 @@ open class Expect<T>(val subject: T?) {
     }
 }
 
-//public class ExpectBoolean(subject: Boolean?) : Expect(subject) {
-//    val `true`: Unit get() {
-//        if (subject != true) {
-//            throw AssertionError()
-//        }
-//    }
-//
-//    val `false`: Unit get() {
-//        if (subject != false) {
-//            throw AssertionError()
-//        }
-//    }
-//}
-//
+class ExpectBoolean(subject: Boolean?) : ExpectBase<Boolean>(subject) {
+    // language chains
+    val to: ExpectBoolean get() = this
+    val be: ExpectBoolean get() = this
+    val been: ExpectBoolean get() = this
+    val that: ExpectBoolean get() = this
+    val which: ExpectBoolean get() = this
+    val and: ExpectBoolean get() = this
+    val has: ExpectBoolean get() = this
+    val have: ExpectBoolean get() = this
+    val with: ExpectBoolean get() = this
+    val at: ExpectBoolean get() = this
+    val an: ExpectBoolean get() = this
+    val of: ExpectBoolean get() = this
+    val same: ExpectBoolean get() = this
+    val the: ExpectBoolean get() = this
+    val `is`: ExpectBoolean get() = this
+
+    val `true`: Unit get() {
+        if (subject != true && !negated) {
+            throw AssertionError()
+        }
+        if (subject == true && negated) {
+            throw AssertionError()
+        }
+    }
+
+    val `false`: Unit get() {
+        if (subject != false && !negated) {
+            throw AssertionError()
+        }
+        if (subject == false && negated) {
+            throw AssertionError()
+        }
+    }
+
+    val not: ExpectBoolean get() {
+        this.negated = !this.negated
+        return this
+    }
+}
+
 //class ExpectNumber(subject: Number?) : Expect(subject) {
 //    fun above(other: Any?): Expect {
 //        return this
@@ -104,10 +137,10 @@ fun <T> T?.should(): Expect<T> {
     return Expect(this)
 }
 
-fun <T> expect(subject: T?): Expect<T> {
+fun <T> expect(subject: T?): Expect<T?> {
     return Expect(subject)
 }
 
-//fun expect(subject: Boolean?): ExpectBoolean {
-//    return ExpectBoolean(subject)
-//}
+fun expect(subject: Boolean?): ExpectBoolean {
+    return ExpectBoolean(subject)
+}
