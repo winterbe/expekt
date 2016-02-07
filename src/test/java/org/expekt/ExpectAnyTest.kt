@@ -1,9 +1,8 @@
 package org.expekt
 
-import org.junit.Assert.fail
 import org.junit.Test
 
-class ExpectTest {
+class ExpectAnyTest {
 
     @Test
     fun notFalse2() {
@@ -113,23 +112,6 @@ class ExpectTest {
     @Test
     fun equals1() {
         passes { expect(3).to.equal(3) }
-    }
-
-    fun fails(fn: () -> Unit) {
-        try {
-            fn()
-            fail()
-        } catch(e: AssertionError) {
-            // swallow
-        }
-    }
-
-    fun passes(fn: () -> Unit) {
-        try {
-            fn()
-        } catch(e: AssertionError) {
-            fail()
-        }
     }
 
 }
