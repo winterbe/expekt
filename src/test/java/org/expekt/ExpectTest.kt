@@ -57,7 +57,7 @@ class ExpectTest {
 
     @Test
     fun satisfy3() {
-        passes { expect(3).to.satisfy { it!! > 2 } }
+        passes { expect(3).to.satisfy { it > 2 } }
     }
 
     @Test

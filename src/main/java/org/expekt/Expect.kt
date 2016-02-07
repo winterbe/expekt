@@ -123,15 +123,37 @@ class ExpectBoolean(subject: Boolean?) : ExpectBase<Boolean>(subject) {
     }
 }
 
-//class ExpectNumber(subject: Number?) : Expect(subject) {
-//    fun above(other: Any?): Expect {
-//        return this
-//    }
-//
-//    fun below(other: Any?): Expect {
-//        return this
-//    }
-//}
+class ExpectNumber<T: Number>(subject: T?) : ExpectBase<T>(subject) {
+    // language chains
+    val to: ExpectNumber<T> get() = this
+    val be: ExpectNumber<T> get() = this
+    val been: ExpectNumber<T> get() = this
+    val that: ExpectNumber<T> get() = this
+    val which: ExpectNumber<T> get() = this
+    val and: ExpectNumber<T> get() = this
+    val has: ExpectNumber<T> get() = this
+    val have: ExpectNumber<T> get() = this
+    val with: ExpectNumber<T> get() = this
+    val at: ExpectNumber<T> get() = this
+    val an: ExpectNumber<T> get() = this
+    val of: ExpectNumber<T> get() = this
+    val same: ExpectNumber<T> get() = this
+    val the: ExpectNumber<T> get() = this
+    val `is`: ExpectNumber<T> get() = this
+
+    fun above(other: T?): ExpectNumber<T> {
+        return this
+    }
+
+    fun below(other: T?): ExpectNumber<T> {
+        return this
+    }
+
+    val not: ExpectNumber<T> get() {
+        this.negated = !this.negated
+        return this
+    }
+}
 
 fun <T> T?.should(): Expect<T> {
     return Expect(this)
@@ -143,4 +165,8 @@ fun <T> expect(subject: T?): Expect<T?> {
 
 fun expect(subject: Boolean?): ExpectBoolean {
     return ExpectBoolean(subject)
+}
+
+fun <T : Number> expect(subject: T?): ExpectNumber<T> {
+    return ExpectNumber(subject)
 }
