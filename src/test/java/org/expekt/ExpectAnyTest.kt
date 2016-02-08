@@ -5,53 +5,13 @@ import org.junit.Test
 class ExpectAnyTest {
 
     @Test
-    fun notFalse2() {
-        fails { expect(false).not.to.be.`false` }
-    }
-
-    @Test
-    fun notFalse1() {
-        passes { expect(true).not.to.be.`false` }
-    }
-
-    @Test
-    fun false2() {
-        fails { expect(true).to.be.`false` }
-    }
-
-    @Test
-    fun false1() {
-        passes { expect(false).to.be.`false` }
-    }
-
-    @Test
-    fun notTrue2() {
-        fails { expect(true).not.to.be.`true` }
-    }
-
-    @Test
-    fun notTrue1() {
-        passes { expect(false).not.to.be.`true` }
-    }
-
-    @Test
-    fun true2() {
-        fails { expect(false).to.be.`true` }
-    }
-
-    @Test
-    fun true1() {
-        passes { expect(true).to.be.`true` }
-    }
-
-    @Test
     fun notSatisfy2() {
         passes { expect(3).to.not.satisfy { it == 4 } }
     }
 
     @Test
     fun notSatisfy1() {
-        fails { expect("abc").to.not.satisfy { it!!.startsWith("b") } }
+        fails { expect("abc").to.not.satisfy { it.startsWith("b") } }
     }
 
     @Test
@@ -66,7 +26,7 @@ class ExpectAnyTest {
 
     @Test
     fun satisfy1() {
-        passes { expect("abc").to.satisfy { it!!.startsWith("a") } }
+        passes { expect("abc").to.satisfy { it.startsWith("a") } }
     }
 
     @Test

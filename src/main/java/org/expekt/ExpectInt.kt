@@ -1,23 +1,26 @@
 package org.expekt
 
 class ExpectInt(subject: Int?) : ExpectBase<Int>(subject) {
+    override val to: ExpectInt get() = this
+    override val be: ExpectInt get() = this
+    override val been: ExpectInt get() = this
+    override val that: ExpectInt get() = this
+    override val which: ExpectInt get() = this
+    override val and: ExpectInt get() = this
+    override val has: ExpectInt get() = this
+    override val have: ExpectInt get() = this
+    override val with: ExpectInt get() = this
+    override val at: ExpectInt get() = this
+    override val an: ExpectInt get() = this
+    override val of: ExpectInt get() = this
+    override val same: ExpectInt get() = this
+    override val the: ExpectInt get() = this
+    override val `is`: ExpectInt get() = this
 
-    // language chains
-    val to: ExpectInt get() = this
-    val be: ExpectInt get() = this
-    val been: ExpectInt get() = this
-    val that: ExpectInt get() = this
-    val which: ExpectInt get() = this
-    val and: ExpectInt get() = this
-    val has: ExpectInt get() = this
-    val have: ExpectInt get() = this
-    val with: ExpectInt get() = this
-    val at: ExpectInt get() = this
-    val an: ExpectInt get() = this
-    val of: ExpectInt get() = this
-    val same: ExpectInt get() = this
-    val the: ExpectInt get() = this
-    val `is`: ExpectInt get() = this
+    override val not: ExpectInt get() {
+        this.negated = !this.negated
+        return this
+    }
 
     fun above(other: Int?): ExpectInt {
         if (subject == null || other == null) {
@@ -42,11 +45,6 @@ class ExpectInt(subject: Int?) : ExpectBase<Int>(subject) {
         if (subject < other && negated) {
             throw AssertionError()
         }
-        return this
-    }
-
-    val not: ExpectInt get() {
-        this.negated = !this.negated
         return this
     }
 }

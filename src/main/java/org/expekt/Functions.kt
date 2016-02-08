@@ -16,3 +16,7 @@ fun expect(subject: Boolean): ExpectBoolean {
 fun expect(subject: Int): ExpectInt {
     return ExpectInt(subject)
 }
+
+fun expect(subject: String): ExpectString {
+    return ExpectString(subject)
+}
