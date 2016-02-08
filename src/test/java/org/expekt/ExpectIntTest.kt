@@ -44,4 +44,9 @@ class ExpectIntTest {
         passes { expect(3).to.be.above(2) }
     }
 
+    @Test
+    fun aboveBelow() {
+        passes { expect(3).to.be.above(2).and.to.be.below(4) }
+    }
+
 }

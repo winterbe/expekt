@@ -1,6 +1,9 @@
 package org.expekt
 
-class ExpectString(subject: String?) : ExpectBase<String>(subject) {
+/**
+ * @author Benjamin Winterberg
+ */
+class ExpectString(subject: String?) : ExpectAny<String>(subject) {
     override val to: ExpectString get() = this
     override val be: ExpectString get() = this
     override val been: ExpectString get() = this
@@ -18,7 +21,66 @@ class ExpectString(subject: String?) : ExpectBase<String>(subject) {
     override val `is`: ExpectString get() = this
 
     override val not: ExpectString get() {
-        this.negated = !this.negated
+        super.not
         return this
     }
+
+    val length: ExpectInt get() {
+        val expectInt = ExpectInt(value!!.length)
+        if (negated) {
+            return expectInt.not
+        }
+        return expectInt
+    }
+
+    fun length(length: Int): ExpectString {
+        if (value!!.length != length && !negated) {
+            throw AssertionError()
+        }
+        if (value.length == length && negated) {
+            throw AssertionError()
+        }
+        return this
+    }
+
+    fun contain(other: String): ExpectString {
+        if (value!!.indexOf(other) < 0 && !negated) {
+            throw AssertionError()
+        }
+        if (value.indexOf(other) >= 0 && negated) {
+            throw AssertionError()
+        }
+        return this
+    }
+
+    fun empty(): ExpectString {
+        if (!value!!.isEmpty() && !negated) {
+            throw AssertionError()
+        }
+        if (value.isEmpty() && negated) {
+            throw AssertionError()
+        }
+        return this
+    }
+
+    fun startWith(other: String): ExpectString {
+        if (!value!!.startsWith(other) && !negated) {
+            throw AssertionError()
+        }
+        if (value.startsWith(other) && negated) {
+            throw AssertionError()
+        }
+        return this
+    }
+
+    fun endWith(other: String): ExpectString {
+        if (!value!!.endsWith(other) && !negated) {
+            throw AssertionError()
+        }
+        if (value.endsWith(other) && negated) {
+            throw AssertionError()
+        }
+        return this
+    }
+
 }

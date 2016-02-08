@@ -31,7 +31,7 @@ class ExpectAnyTest {
 
     @Test
     fun notNull2() {
-        fails { expect(null).to.not.be.`null` }
+        fails { expect(null as Int?).to.not.be.`null` }
     }
 
     @Test
@@ -46,7 +46,7 @@ class ExpectAnyTest {
 
     @Test
     fun null1() {
-        passes { expect(null).to.be.`null` }
+        passes { expect(null as Int?).to.be.`null` }
     }
 
     @Test

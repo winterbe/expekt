@@ -20,3 +20,7 @@ fun expect(subject: Int): ExpectInt {
 fun expect(subject: String): ExpectString {
     return ExpectString(subject)
 }
+
+fun <T> expect(subject: Collection<T>): ExpectCollection<T> {
+    return ExpectCollection(subject)
+}

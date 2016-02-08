@@ -1,6 +1,9 @@
 package org.expekt
 
-class ExpectInt(subject: Int?) : ExpectBase<Int>(subject) {
+/**
+ * @author Benjamin Winterberg
+ */
+class ExpectInt(subject: Int?) : ExpectAny<Int>(subject) {
     override val to: ExpectInt get() = this
     override val be: ExpectInt get() = this
     override val been: ExpectInt get() = this
@@ -18,31 +21,31 @@ class ExpectInt(subject: Int?) : ExpectBase<Int>(subject) {
     override val `is`: ExpectInt get() = this
 
     override val not: ExpectInt get() {
-        this.negated = !this.negated
+        super.not
         return this
     }
 
     fun above(other: Int?): ExpectInt {
-        if (subject == null || other == null) {
+        if (value == null || other == null) {
             throw AssertionError()
         }
-        if (subject <= other && !negated) {
+        if (value <= other && !negated) {
             throw AssertionError()
         }
-        if (subject > other && negated) {
+        if (value > other && negated) {
             throw AssertionError()
         }
         return this
     }
 
     fun below(other: Int?): ExpectInt {
-        if (subject == null || other == null) {
+        if (value == null || other == null) {
             throw AssertionError()
         }
-        if (subject >= other && !negated) {
+        if (value >= other && !negated) {
             throw AssertionError()
         }
-        if (subject < other && negated) {
+        if (value < other && negated) {
             throw AssertionError()
         }
         return this
