@@ -58,4 +58,14 @@ open class ExpectAny<T>(val value: T?) {
         }
     }
 
+    protected fun verify(rule: () -> Boolean) {
+        val truthy = rule()
+        if (!truthy && !negated) {
+            throw AssertionError()
+        }
+        if (truthy && negated) {
+            throw AssertionError()
+        }
+    }
+
 }
