@@ -14,6 +14,7 @@ class ExpectInt(subject: Int?) : ExpectAny<Int>(subject) {
     override val have: ExpectInt get() = this
     override val with: ExpectInt get() = this
     override val at: ExpectInt get() = this
+    override val a: ExpectInt get() = this
     override val an: ExpectInt get() = this
     override val of: ExpectInt get() = this
     override val same: ExpectInt get() = this
@@ -25,29 +26,33 @@ class ExpectInt(subject: Int?) : ExpectAny<Int>(subject) {
         return this
     }
 
-    fun above(other: Int?): ExpectInt {
-        if (value == null || other == null) {
-            throw AssertionError()
-        }
-        if (value <= other && !negated) {
-            throw AssertionError()
-        }
-        if (value > other && negated) {
-            throw AssertionError()
-        }
+    override val `null`: ExpectInt get() {
+        super.`null`
         return this
     }
 
-    fun below(other: Int?): ExpectInt {
-        if (value == null || other == null) {
-            throw AssertionError()
-        }
-        if (value >= other && !negated) {
-            throw AssertionError()
-        }
-        if (value < other && negated) {
-            throw AssertionError()
-        }
+    fun within(min: Int, max: Int): ExpectInt {
+        verify { value!! >= min && value <= max }
+        return this
+    }
+
+    fun most(other: Int): ExpectInt {
+        verify { value!! <= other }
+        return this
+    }
+
+    fun least(other: Int): ExpectInt {
+        verify { value!! >= other }
+        return this
+    }
+
+    fun above(other: Int): ExpectInt {
+        verify { value!! > other }
+        return this
+    }
+
+    fun below(other: Int): ExpectInt {
+        verify { value!! < other }
         return this
     }
 }

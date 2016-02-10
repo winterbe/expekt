@@ -14,6 +14,7 @@ class ExpectBoolean(subject: Boolean?) : ExpectAny<Boolean>(subject) {
     override val have: ExpectBoolean get() = this
     override val with: ExpectBoolean get() = this
     override val at: ExpectBoolean get() = this
+    override val a: ExpectBoolean get() = this
     override val an: ExpectBoolean get() = this
     override val of: ExpectBoolean get() = this
     override val same: ExpectBoolean get() = this
@@ -25,21 +26,16 @@ class ExpectBoolean(subject: Boolean?) : ExpectAny<Boolean>(subject) {
         return this
     }
 
+    override val `null`: ExpectBoolean get() {
+        super.`null`
+        return this
+    }
+
     val `true`: Unit get() {
-        if (value != true && !negated) {
-            throw AssertionError()
-        }
-        if (value == true && negated) {
-            throw AssertionError()
-        }
+        verify { value == true }
     }
 
     val `false`: Unit get() {
-        if (value != false && !negated) {
-            throw AssertionError()
-        }
-        if (value == false && negated) {
-            throw AssertionError()
-        }
+        verify { value == false }
     }
 }

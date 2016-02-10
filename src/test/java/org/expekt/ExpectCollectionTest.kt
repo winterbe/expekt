@@ -5,8 +5,24 @@ import org.junit.Test
 class ExpectCollectionTest {
 
     @Test
+    fun elementsExplicitAll() {
+        passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1, 2, 3) }
+        passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1, 2) }
+        passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1) }
+        fails { expect(listOf(1, 2, 3)).to.contain.all.elements(1, 2, 4) }
+    }
+
+    @Test
+    fun elementsImplicitAll() {
+        passes { expect(listOf(1, 2, 3)).to.contain.elements(1, 2, 3) }
+        passes { expect(listOf(1, 2, 3)).to.contain.elements(1, 2) }
+        passes { expect(listOf(1, 2, 3)).to.contain.elements(1) }
+        fails { expect(listOf(1, 2, 3)).to.contain.elements(1, 2, 4) }
+    }
+
+    @Test
     fun containsLength() {
-        passes { expect(listOf(1, 2, 3)).to.contain(3).and.to.have.length.above(2) }
+        passes { expect(listOf(1, 2, 3)).to.contain(3).and.to.have.size.above(2) }
     }
 
     @Test
@@ -30,43 +46,27 @@ class ExpectCollectionTest {
     }
 
     @Test
-    fun notLengthProp2() {
-        fails { expect(listOf(1, 2, 3)).not.to.have.length.below(2) }
+    fun notSizeProp() {
+        passes { expect(listOf(1, 2, 3)).not.to.have.size.above(3) }
+        fails { expect(listOf(1, 2, 3)).not.to.have.size.below(2) }
     }
 
     @Test
-    fun notLengthProp1() {
-        passes { expect(listOf(1, 2, 3)).not.to.have.length.above(3) }
+    fun sizeProp() {
+        passes { expect(listOf(1, 2, 3)).to.have.size.above(2) }
+        fails { expect(listOf(1, 2, 3)).to.have.size.equal(4) }
     }
 
     @Test
-    fun lengthProp2() {
-        fails { expect(listOf(1, 2, 3)).to.have.length.equal(4) }
+    fun notSize() {
+        passes { expect(listOf(1, 2, 3)).not.to.have.size(4) }
+        fails { expect(listOf(1, 2, 3)).not.to.have.size(3) }
     }
 
     @Test
-    fun lengthProp1() {
-        passes { expect(listOf(1, 2, 3)).to.have.length.above(2) }
-    }
-
-    @Test
-    fun notLength2() {
-        fails { expect(listOf(1, 2, 3)).not.to.have.length(3) }
-    }
-
-    @Test
-    fun notLength1() {
-        passes { expect(listOf(1, 2, 3)).not.to.have.length(4) }
-    }
-
-    @Test
-    fun length2() {
-        fails { expect(listOf(1, 2, 3)).to.have.length(4) }
-    }
-
-    @Test
-    fun length1() {
-        passes { expect(listOf(1, 2, 3)).to.have.length(3) }
+    fun size() {
+        passes { expect(listOf(1, 2, 3)).to.have.size(3) }
+        fails { expect(listOf(1, 2, 3)).to.have.size(4) }
     }
 
     @Test

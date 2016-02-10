@@ -14,6 +14,7 @@ open class ExpectAny<T>(val value: T?) {
     open val have: ExpectAny<T> get() = this
     open val with: ExpectAny<T> get() = this
     open val at: ExpectAny<T> get() = this
+    open val a: ExpectAny<T> get() = this
     open val an: ExpectAny<T> get() = this
     open val of: ExpectAny<T> get() = this
     open val same: ExpectAny<T> get() = this
@@ -27,35 +28,17 @@ open class ExpectAny<T>(val value: T?) {
         return this
     }
 
-    val `null`: Unit get() {
-        if (value != null && !negated) {
-            throw AssertionError()
-        }
-        if (value == null && negated) {
-            throw AssertionError()
-        }
+    open val `null`: ExpectAny<T> get() {
+        verify { value == null }
+        return this
     }
 
     fun equal(other: T?) {
-        if (value != other && !negated) {
-            throw AssertionError()
-        }
-        if (value == other && negated) {
-            throw AssertionError()
-        }
+        verify { value == other }
     }
 
     fun satisfy(predicate: (a: T) -> Boolean) {
-        if (value == null) {
-            throw AssertionError()
-        }
-        val satisfied = predicate(value)
-        if (!satisfied && !negated) {
-            throw AssertionError()
-        }
-        if (satisfied && negated) {
-            throw AssertionError()
-        }
+        verify { predicate(value!!) }
     }
 
     protected fun verify(rule: () -> Boolean) {

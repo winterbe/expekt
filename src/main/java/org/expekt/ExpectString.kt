@@ -14,6 +14,7 @@ class ExpectString(subject: String?) : ExpectAny<String>(subject) {
     override val have: ExpectString get() = this
     override val with: ExpectString get() = this
     override val at: ExpectString get() = this
+    override val a: ExpectString get() = this
     override val an: ExpectString get() = this
     override val of: ExpectString get() = this
     override val same: ExpectString get() = this
@@ -22,6 +23,11 @@ class ExpectString(subject: String?) : ExpectAny<String>(subject) {
 
     override val not: ExpectString get() {
         super.not
+        return this
+    }
+
+    override val `null`: ExpectString get() {
+        super.`null`
         return this
     }
 
@@ -34,52 +40,27 @@ class ExpectString(subject: String?) : ExpectAny<String>(subject) {
     }
 
     fun length(length: Int): ExpectString {
-        if (value!!.length != length && !negated) {
-            throw AssertionError()
-        }
-        if (value.length == length && negated) {
-            throw AssertionError()
-        }
+        verify { value!!.length == length }
         return this
     }
 
     fun contain(other: String): ExpectString {
-        if (value!!.indexOf(other) < 0 && !negated) {
-            throw AssertionError()
-        }
-        if (value.indexOf(other) >= 0 && negated) {
-            throw AssertionError()
-        }
+        verify { value!!.indexOf(other) >= 0 }
         return this
     }
 
     fun empty(): ExpectString {
-        if (!value!!.isEmpty() && !negated) {
-            throw AssertionError()
-        }
-        if (value.isEmpty() && negated) {
-            throw AssertionError()
-        }
+        verify { value!!.isEmpty() }
         return this
     }
 
     fun startWith(other: String): ExpectString {
-        if (!value!!.startsWith(other) && !negated) {
-            throw AssertionError()
-        }
-        if (value.startsWith(other) && negated) {
-            throw AssertionError()
-        }
+        verify { value!!.startsWith(other) }
         return this
     }
 
     fun endWith(other: String): ExpectString {
-        if (!value!!.endsWith(other) && !negated) {
-            throw AssertionError()
-        }
-        if (value.endsWith(other) && negated) {
-            throw AssertionError()
-        }
+        verify { value!!.endsWith(other) }
         return this
     }
 
