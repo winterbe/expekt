@@ -5,7 +5,14 @@ import org.junit.Test
 class ExpectCollectionTest {
 
     @Test
-    fun elementsExplicitAll() {
+    fun elementsContainAny() {
+        passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 2, 3) }
+        passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 4) }
+        fails { expect(listOf(1, 2, 3)).to.contain.any.elements(4, 5) }
+    }
+
+    @Test
+    fun elementsContainAll() {
         passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1, 2, 3) }
         passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1, 2) }
         passes { expect(listOf(1, 2, 3)).to.contain.all.elements(1) }
@@ -13,7 +20,7 @@ class ExpectCollectionTest {
     }
 
     @Test
-    fun elementsImplicitAll() {
+    fun elementsContainImplicitAll() {
         passes { expect(listOf(1, 2, 3)).to.contain.elements(1, 2, 3) }
         passes { expect(listOf(1, 2, 3)).to.contain.elements(1, 2) }
         passes { expect(listOf(1, 2, 3)).to.contain.elements(1) }

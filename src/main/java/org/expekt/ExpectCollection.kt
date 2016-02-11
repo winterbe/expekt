@@ -21,7 +21,7 @@ class ExpectCollection<T>(subject: Collection<T>): ExpectAny<Collection<T>>(subj
     override val `is`: ExpectCollection<T> get() = this
 
     private var anyMode = false
-    private var strictMode = false
+    private var haveMode = false
 
     val any: ExpectCollection<T> get() {
         anyMode = true
@@ -34,12 +34,12 @@ class ExpectCollection<T>(subject: Collection<T>): ExpectAny<Collection<T>>(subj
     }
 
     override val have: ExpectCollection<T> get() {
-        strictMode = true
+        haveMode = true
         return this
     }
 
     val contain: ExpectCollection<T> get() {
-        strictMode = false
+        haveMode = false
         return this
     }
 
@@ -49,15 +49,36 @@ class ExpectCollection<T>(subject: Collection<T>): ExpectAny<Collection<T>>(subj
     }
 
     fun elements(vararg elements: T): ExpectCollection<T> {
-        verify(fun(): Boolean {
-            for (element in elements) {
-                if (!value!!.contains(element)) {
-                    return false
-                }
-            }
-            return true
-        })
+        if (anyMode) {
+            verify { containsAny(elements) }
+        } else {
+            verify { containsAll(elements) }
+        }
         return this
+    }
+
+    private fun containsAll(elements: Array<out T>): Boolean {
+        if (haveMode && elements.size != value!!.size) {
+            return false
+        }
+        for (element in elements) {
+            if (!value!!.contains(element)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun containsAny(elements: Array<out T>): Boolean {
+        if (haveMode && elements.size != value!!.size) {
+            return false
+        }
+        for (element in elements) {
+            if (value!!.contains(element)) {
+                return true
+            }
+        }
+        return false
     }
 
     override val not: ExpectCollection<T> get() {
