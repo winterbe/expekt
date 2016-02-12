@@ -3,7 +3,7 @@ package org.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectString(subject: String?) : ExpectAny<String>(subject) {
+class ExpectString(value: String?) : ExpectAny<String>(value) {
     override val to: ExpectString get() = this
     override val be: ExpectString get() = this
     override val been: ExpectString get() = this

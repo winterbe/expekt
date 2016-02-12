@@ -3,7 +3,7 @@ package org.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectBoolean(subject: Boolean?) : ExpectAny<Boolean>(subject) {
+class ExpectBoolean(value: Boolean?) : ExpectAny<Boolean>(value) {
     override val to: ExpectBoolean get() = this
     override val be: ExpectBoolean get() = this
     override val been: ExpectBoolean get() = this

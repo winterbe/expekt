@@ -5,6 +5,29 @@ import org.junit.Test
 class ExpectCollectionTest {
 
     @Test
+    fun elementsHaveAny() {
+        passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 2, 3) }
+        passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 4) }
+        fails { expect(listOf(1, 2, 3)).to.contain.any.elements(4, 5) }
+    }
+
+    @Test
+    fun elementsHaveAll() {
+        passes { expect(listOf(1, 2, 3)).to.have.all.elements(1, 2, 3) }
+        fails { expect(listOf(1, 2, 3)).to.have.all.elements(1, 2) }
+        fails { expect(listOf(1, 2, 3)).to.have.all.elements(1) }
+        fails { expect(listOf(1, 2, 3)).to.have.all.elements(1, 2, 3, 4) }
+    }
+
+    @Test
+    fun elementsHaveImplicitAll() {
+        passes { expect(listOf(1, 2, 3)).to.have.elements(1, 2, 3) }
+        fails { expect(listOf(1, 2, 3)).to.have.elements(1, 2) }
+        fails { expect(listOf(1, 2, 3)).to.have.elements(1) }
+        fails { expect(listOf(1, 2, 3)).to.have.elements(1, 2, 3, 4) }
+    }
+
+    @Test
     fun elementsContainAny() {
         passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 2, 3) }
         passes { expect(listOf(1, 2, 3)).to.contain.any.elements(1, 4) }

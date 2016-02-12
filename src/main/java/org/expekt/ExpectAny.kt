@@ -33,6 +33,18 @@ open class ExpectAny<T>(val value: T?) {
         return this
     }
 
+    fun <S: T> an(type: Class<S>) {
+        a(type)
+    }
+
+    fun <S: T> a(type: Class<S>) {
+        verify { type.isInstance(value) }
+    }
+
+    fun identity(other: T?) {
+        verify { value === other }
+    }
+
     fun equal(other: T?) {
         verify { value == other }
     }

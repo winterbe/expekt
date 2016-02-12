@@ -3,7 +3,7 @@ package org.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(subject: Collection<T>): ExpectAny<Collection<T>>(subject) {
+class ExpectCollection<T>(value: Collection<T>): ExpectAny<Collection<T>>(value) {
     override val to: ExpectCollection<T> get() = this
     override val be: ExpectCollection<T> get() = this
     override val been: ExpectCollection<T> get() = this
@@ -70,9 +70,7 @@ class ExpectCollection<T>(subject: Collection<T>): ExpectAny<Collection<T>>(subj
     }
 
     private fun containsAny(elements: Array<out T>): Boolean {
-        if (haveMode && elements.size != value!!.size) {
-            return false
-        }
+        // is the same for haveAny
         for (element in elements) {
             if (value!!.contains(element)) {
                 return true
