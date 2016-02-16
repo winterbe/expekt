@@ -1,4 +1,4 @@
-package org.expekt
+package org.winterbe.expekt
 
 /**
  * @author Benjamin Winterberg

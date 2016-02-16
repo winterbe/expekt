@@ -4,11 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.expekt</groupId>
+    <groupId>org.winterbe.expekt</groupId>
     <artifactId>expekt</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <developers>
+        <developer>
+            <name>Benjamin Winterberg</name>
+            <url>http://winterbe.com</url>
+        </developer>
+    </developers>
     <properties>
-        <kotlin.version>1.0.0-rc-1036</kotlin.version>
+        <kotlin.version>1.0.0</kotlin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -20,7 +26,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -38,7 +44,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>src/main/java</source>
+                                <source>src/main/kotlin</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -50,7 +56,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>src/test/java</source>
+                                <source>src/test/kotlin</source>
                             </sourceDirs>
                         </configuration>
                     </execution>

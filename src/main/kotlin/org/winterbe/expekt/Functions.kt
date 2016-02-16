@@ -1,4 +1,4 @@
-package org.expekt
+package org.winterbe.expekt
 
 
 fun <T> T?.should(): ExpectAny<T> {
