@@ -42,35 +42,19 @@ class ExpectAnyTest {
     }
 
     @Test
-    fun notAn() {
+    fun notInstanceof() {
         open class A
         class B : A()
-        fails { expect(A()).not.to.be.an(A::class.java) }
-        passes { expect(A()).not.to.be.an(B::class.java) }
+        fails { expect(A()).not.to.be.instanceof(A::class.java) }
+        passes { expect(A()).not.to.be.instanceof(B::class.java) }
     }
 
     @Test
-    fun an() {
+    fun instanceof() {
         open class A
         class B : A()
-        passes { expect(A()).to.be.an(A::class.java) }
-        fails { expect(A()).to.be.an(B::class.java) }
-    }
-
-    @Test
-    fun notA() {
-        open class A
-        class B : A()
-        fails { expect(A()).not.to.be.a(A::class.java) }
-        passes { expect(A()).not.to.be.a(B::class.java) }
-    }
-
-    @Test
-    fun a() {
-        open class A
-        class B: A()
-        passes { expect(A()).to.be.a(A::class.java) }
-        fails { expect(A()).to.be.a(B::class.java) }
+        passes { expect(A()).to.be.instanceof(A::class.java) }
+        fails { expect(A()).to.be.instanceof(B::class.java) }
     }
 
     @Test

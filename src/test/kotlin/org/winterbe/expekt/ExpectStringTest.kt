@@ -5,6 +5,18 @@ import org.junit.Test
 class ExpectStringTest {
 
     @Test
+    fun notMatch() {
+        passes { expect("abc").not.to.match(Regex(".")) }
+        fails { expect("abc").not.to.match(Regex(".*")) }
+    }
+
+    @Test
+    fun match() {
+        passes { expect("abc").to.match(Regex(".*")) }
+        fails { expect("abc").to.match(Regex(".")) }
+    }
+
+    @Test
     fun containStartWith() {
         passes { expect("abc").to.contain("bc").and.to.startWith("a") }
     }

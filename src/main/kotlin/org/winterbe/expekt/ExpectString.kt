@@ -39,6 +39,11 @@ class ExpectString(value: String?) : ExpectAny<String>(value) {
         return expectInt
     }
 
+    fun match(regex: Regex): ExpectString {
+        verify { regex.matches(value!!) }
+        return this
+    }
+
     fun length(length: Int): ExpectString {
         verify { value!!.length == length }
         return this

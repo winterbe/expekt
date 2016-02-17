@@ -33,11 +33,7 @@ open class ExpectAny<T>(val value: T?) {
         return this
     }
 
-    fun <S: T> an(type: Class<S>) {
-        a(type)
-    }
-
-    fun <S: T> a(type: Class<S>) {
+    fun <S: T> instanceof(type: Class<S>) {
         verify { type.isInstance(value) }
     }
 

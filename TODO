@@ -1,39 +1,68 @@
 Chai API:
 
 ✔ not
-✘ deep
-✘ any
-✘ all
-✘ a/an
-✘ contain
-✘ ok
-✘ true
-✘ false
-✘ null
-✘ undefined
-✘ exist
-✘ empty
-✘ arguments
-✘ equal
-✘ eql
-✘ above/gt
-✘ least/gte
-✘ below/lt
-✘ most/lte
-✘ within
-✘ instanceof
-✘ property
-✘ ownProperty
-✘ length
-✘ match
-✘ string
-✘ keys/key
-✘ throw
-✘ respondTo
-✘ itself
-✘ satisfy
+✔ any
+✔ all
+✔ instanceof
+✔ contain
+✔ true
+✔ false
+✔ null
+✔ empty
+✔ equal
+✔ above/gt
+✔ least/gte
+✔ below/lt
+✔ most/lte
+✔ within
 ✘ closeTo
-✘ members
+✘ match
+✔ length
+✔ string
+✔ satisfy
+✘ property
+✘ throw
 ✘ change
+
+
+Irrelevant:
+
+✘ ok
+✘ deep
+✘ undefined
+✘ arguments
+✘ ownProperty
+✘ keys/key
+✘ eql
 ✘ increase
 ✘ decrease
+✘ exist
+✘ a/an
+✘ respondTo
+✘ itself
+✘ members
+
+
+Kotlin types:
+
+✔ Any
+✔ Boolean
+✔ String
+✔ Collection
+✘ Int
+✘ Long
+✘ Double
+
+
+Later:
+
+✘ Date
+✘ List
+✘ Set
+✘ Map
+✘ Mutable/Imutable
+
+
+More:
+
+✔ Returns
