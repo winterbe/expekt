@@ -5,40 +5,39 @@ import org.junit.Test
 class ExpectAnyTest {
 
     @Test
-    fun notSatisfy2() {
-        passes { expect(3).to.not.satisfy { it == 4 } }
+    fun notSatisfy() {
+        data class A(val a: String)
+        passes { expect(A("1")).to.not.satisfy { it!!.a == "2" } }
+        fails("expect A(a=1) to not satisfy predicate") {
+            expect(A("1")).to.not.satisfy { it!!.a == "1" }
+        }
     }
 
     @Test
-    fun notSatisfy1() {
-        fails { expect("abc").to.not.satisfy { it.startsWith("b") } }
-    }
-
-    @Test
-    fun satisfy3() {
-        passes { expect(3).to.satisfy { it > 2 } }
-    }
-
-    @Test
-    fun satisfy2() {
-        fails { expect(3).to.satisfy { it == 4 } }
-    }
-
-    @Test
-    fun satisfy1() {
-        passes { expect("abc").to.satisfy { it.startsWith("a") } }
+    fun satisfy() {
+        data class A(val a: String)
+        passes { expect(A("abc")).to.satisfy { it!!.a == "abc" } }
+        fails("expect A(a=abc) to satisfy predicate") {
+            expect(A("abc")).to.satisfy { it!!.a == "a" }
+        }
     }
 
     @Test
     fun notNull() {
-        passes { expect("abc").to.not.be.`null` }
-        fails { expect(null as Int?).to.not.be.`null` }
+        data class A(val a: String)
+        passes { expect(A("b")).to.not.be.`null` }
+        fails("expect null to not be null") {
+            expect(null as A?).to.not.be.`null`
+        }
     }
 
     @Test
     fun `null`() {
-        passes { expect(null as Int?).to.be.`null` }
-        fails { expect(3).to.be.`null` }
+        data class A(val a: String)
+        passes { expect(null as A?).to.be.`null` }
+        fails("expect A(a=a) to be null") {
+            expect(A("a")).to.be.`null`
+        }
     }
 
     @Test
@@ -59,31 +58,48 @@ class ExpectAnyTest {
 
     @Test
     fun notIdentity() {
-        val obj1 = Object()
-        val obj2 = Object()
-        fails { expect(obj1).not.to.be.of.identity(obj1) }
-        passes { expect(obj1).not.to.be.of.identity(obj2) }
+        data class A(val a: String)
+        val a1 = A("1")
+        val a2 = A("2")
+        passes { expect(a1).not.to.be.of.identity(a2) }
+        fails("expect A(a=1) not to be of identity A(a=1)") {
+            expect(a1).not.to.be.of.identity(a1)
+        }
     }
 
     @Test
     fun identity() {
-        val obj1 = Object()
-        val obj2 = Object()
-        passes { expect(obj1).to.be.of.identity(obj1) }
-        fails { expect(obj1).to.be.of.identity(obj2) }
+        data class A(val a: String)
+        val a1 = A("1")
+        val a2 = A("2")
+        passes { expect(a1).to.be.of.identity(a1) }
+        fails("expect A(a=1) to be of identity A(a=2)") {
+            expect(a1).to.be.of.identity(a2)
+        }
     }
 
     @Test
     fun notEquals() {
-        fails { expect(1).to.not.equal(1) }
-        passes { expect(1).to.not.equal(2) }
+        data class A(val a: String)
+        val a1 = A("1")
+        val a2 = A("1")
+        val a3 = A("3")
+        passes { expect(a1).to.not.equal(a3) }
+        fails("expect A(a=1) to not equal A(a=1)") {
+            expect(a1).to.not.equal(a2)
+        }
     }
 
     @Test
     fun equals() {
-        passes { expect("").to.be.equal("") }
-        fails { expect(3).to.equal(4) }
-        passes { expect(3).to.equal(3) }
+        data class A(val a: String)
+        val a1 = A("1")
+        val a2 = A("1")
+        val a3 = A("3")
+        passes { expect(a1).to.be.equal(a2) }
+        fails("expect A(a=1) to equal A(a=3)") {
+            expect(a1).to.equal(a3)
+        }
     }
 
 }

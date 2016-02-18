@@ -1,5 +1,6 @@
 package org.winterbe.expekt
 
+import org.hamcrest.CoreMatchers
 import org.junit.Assert
 
 fun fails(fn: () -> Unit) {
@@ -8,6 +9,15 @@ fun fails(fn: () -> Unit) {
         Assert.fail()
     } catch(e: AssertionError) {
         // swallow
+    }
+}
+
+fun fails(message: String, fn: () -> Unit) {
+    try {
+        fn()
+        Assert.fail()
+    } catch(e: AssertionError) {
+        Assert.assertThat(e.message, CoreMatchers.`is`(message))
     }
 }
 

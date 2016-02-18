@@ -4,32 +4,6 @@ package org.winterbe.expekt
  * @author Benjamin Winterberg
  */
 class ExpectString(value: String?) : ExpectAny<String>(value) {
-    override val to: ExpectString get() = this
-    override val be: ExpectString get() = this
-    override val been: ExpectString get() = this
-    override val that: ExpectString get() = this
-    override val which: ExpectString get() = this
-    override val and: ExpectString get() = this
-    override val has: ExpectString get() = this
-    override val have: ExpectString get() = this
-    override val with: ExpectString get() = this
-    override val at: ExpectString get() = this
-    override val a: ExpectString get() = this
-    override val an: ExpectString get() = this
-    override val of: ExpectString get() = this
-    override val same: ExpectString get() = this
-    override val the: ExpectString get() = this
-    override val `is`: ExpectString get() = this
-
-    override val not: ExpectString get() {
-        super.not
-        return this
-    }
-
-    override val `null`: ExpectString get() {
-        super.`null`
-        return this
-    }
 
     val length: ExpectInt get() {
         val expectInt = ExpectInt(value!!.length)
@@ -66,6 +40,96 @@ class ExpectString(value: String?) : ExpectAny<String>(value) {
 
     fun endWith(other: String): ExpectString {
         verify { value!!.endsWith(other) }
+        return this
+    }
+
+    override val to: ExpectString get() {
+        super.to
+        return this
+    }
+
+    override val be: ExpectString get() {
+        super.be
+        return this
+    }
+
+    override val been: ExpectString get() {
+        super.been
+        return this
+    }
+
+    override val that: ExpectString get() {
+        super.that
+        return this
+    }
+
+    override val which: ExpectString get() {
+        super.which
+        return this
+    }
+
+    override val and: ExpectString get() {
+        super.and
+        return this
+    }
+
+    override val has: ExpectString get() {
+        super.has
+        return this
+    }
+
+    override val have: ExpectString get() {
+        super.have
+        return this
+    }
+
+    override val with: ExpectString get() {
+        super.with
+        return this
+    }
+
+    override val at: ExpectString get() {
+        super.at
+        return this
+    }
+
+    override val a: ExpectString get() {
+        super.a
+        return this
+    }
+
+    override val an: ExpectString get() {
+        super.an
+        return this
+    }
+
+    override val of: ExpectString get() {
+        super.of
+        return this
+    }
+
+    override val same: ExpectString get() {
+        super.same
+        return this
+    }
+
+    override val the: ExpectString get() {
+        super.the
+        return this
+    }
+
+    override val `is`: ExpectString get() {
+        super.`is`
+        return this
+    }
+
+    override val not: ExpectString get() {
+        super.not
+        return this
+    }
+
+    override val `null`: ExpectString get() {
+        super.`null`
         return this
     }
 
