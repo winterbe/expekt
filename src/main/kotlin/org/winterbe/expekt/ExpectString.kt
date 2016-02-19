@@ -5,9 +5,9 @@ package org.winterbe.expekt
  */
 class ExpectString(value: String?) : ExpectAny<String>(value) {
 
-    val length: ExpectInt get() {
+    val length: ExpectComparable<Int> get() {
         words.add("length")
-        val expectInt = ExpectInt(value!!.length)
+        val expectInt = ExpectComparable(value!!.length)
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
         expectInt.words.removeAt(0)

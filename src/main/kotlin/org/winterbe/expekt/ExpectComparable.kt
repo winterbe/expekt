@@ -3,9 +3,9 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectInt(value: Int?) : ExpectAny<Int>(value) {
+class ExpectComparable<T>(value: Comparable<T>?) : ExpectAny<Comparable<T>>(value) {
 
-    fun within(min: Int, max: Int): ExpectInt {
+    fun within(min: T, max: T): ExpectComparable<T> {
         words.add("within")
         words.add(min.toString())
         words.add(max.toString())
@@ -13,120 +13,120 @@ class ExpectInt(value: Int?) : ExpectAny<Int>(value) {
         return this
     }
 
-    fun most(other: Int): ExpectInt {
+    fun most(other: T): ExpectComparable<T> {
         words.add("most")
         words.add(other.toString())
         verify { value!! <= other }
         return this
     }
 
-    fun least(other: Int): ExpectInt {
+    fun least(other: T): ExpectComparable<T> {
         words.add("least")
         words.add(other.toString())
         verify { value!! >= other }
         return this
     }
 
-    fun above(other: Int): ExpectInt {
+    fun above(other: T): ExpectComparable<T> {
         words.add("above")
         words.add(other.toString())
         verify { value!! > other }
         return this
     }
 
-    fun below(other: Int): ExpectInt {
+    fun below(other: T): ExpectComparable<T> {
         words.add("below")
         words.add(other.toString())
         verify { value!! < other }
         return this
     }
 
-    override val to: ExpectInt get() {
+    override val to: ExpectComparable<T> get() {
         super.to
         return this
     }
 
-    override val be: ExpectInt get() {
+    override val be: ExpectComparable<T> get() {
         super.be
         return this
     }
 
-    override val been: ExpectInt get() {
+    override val been: ExpectComparable<T> get() {
         super.been
         return this
     }
 
-    override val that: ExpectInt get() {
+    override val that: ExpectComparable<T> get() {
         super.that
         return this
     }
 
-    override val which: ExpectInt get() {
+    override val which: ExpectComparable<T> get() {
         super.which
         return this
     }
 
-    override val and: ExpectInt get() {
+    override val and: ExpectComparable<T> get() {
         super.and
         return this
     }
 
-    override val has: ExpectInt get() {
+    override val has: ExpectComparable<T> get() {
         super.has
         return this
     }
 
-    override val have: ExpectInt get() {
+    override val have: ExpectComparable<T> get() {
         super.have
         return this
     }
 
-    override val with: ExpectInt get() {
+    override val with: ExpectComparable<T> get() {
         super.with
         return this
     }
 
-    override val at: ExpectInt get() {
+    override val at: ExpectComparable<T> get() {
         super.at
         return this
     }
 
-    override val a: ExpectInt get() {
+    override val a: ExpectComparable<T> get() {
         super.a
         return this
     }
 
-    override val an: ExpectInt get() {
+    override val an: ExpectComparable<T> get() {
         super.an
         return this
     }
 
-    override val of: ExpectInt get() {
+    override val of: ExpectComparable<T> get() {
         super.of
         return this
     }
 
-    override val same: ExpectInt get() {
+    override val same: ExpectComparable<T> get() {
         super.same
         return this
     }
 
-    override val the: ExpectInt get() {
+    override val the: ExpectComparable<T> get() {
         super.the
         return this
     }
 
-    override val `is`: ExpectInt get() {
+    override val `is`: ExpectComparable<T> get() {
         super.`is`
         return this
     }
 
-    override val not: ExpectInt get() {
+    override val not: ExpectComparable<T> get() {
         super.not
         return this
     }
 
-    override val `null`: ExpectInt get() {
+    override val `null`: ExpectComparable<T> get() {
         super.`null`
         return this
     }

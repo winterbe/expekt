@@ -2,7 +2,13 @@ package org.winterbe.expekt
 
 import org.junit.Test
 
-class ExpectIntTest {
+class ExpectComparableTest {
+
+    @Test
+    fun withinDouble() {
+        passes { expect(3.0).to.be.within(2.0, 4.0) }
+        fails("expect 3.0 to be within 4.0 5.0") { expect(3.0).to.be.within(4.0, 5.0) }
+    }
 
     @Test
     fun notWithin() {

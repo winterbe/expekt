@@ -13,8 +13,8 @@ fun expect(subject: Boolean): ExpectBoolean {
     return ExpectBoolean(subject)
 }
 
-fun expect(subject: Int): ExpectInt {
-    return ExpectInt(subject)
+fun <T: Comparable<T>> expect(subject: T?): ExpectComparable<T> {
+    return ExpectComparable(subject)
 }
 
 fun expect(subject: String): ExpectString {

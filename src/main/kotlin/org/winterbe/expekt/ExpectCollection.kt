@@ -79,9 +79,9 @@ class ExpectCollection<T>(value: Collection<T>): ExpectAny<Collection<T>>(value)
         return this
     }
 
-    val size: ExpectInt get() {
+    val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectInt(value!!.size)
+        val expectInt = ExpectComparable(value!!.size)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
