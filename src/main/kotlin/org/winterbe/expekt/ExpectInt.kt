@@ -32,26 +32,37 @@ class ExpectInt(value: Int?) : ExpectAny<Int>(value) {
     }
 
     fun within(min: Int, max: Int): ExpectInt {
+        words.add("within")
+        words.add(min.toString())
+        words.add(max.toString())
         verify { value!! >= min && value <= max }
         return this
     }
 
     fun most(other: Int): ExpectInt {
+        words.add("most")
+        words.add(other.toString())
         verify { value!! <= other }
         return this
     }
 
     fun least(other: Int): ExpectInt {
+        words.add("least")
+        words.add(other.toString())
         verify { value!! >= other }
         return this
     }
 
     fun above(other: Int): ExpectInt {
+        words.add("above")
+        words.add(other.toString())
         verify { value!! > other }
         return this
     }
 
     fun below(other: Int): ExpectInt {
+        words.add("below")
+        words.add(other.toString())
         verify { value!! < other }
         return this
     }

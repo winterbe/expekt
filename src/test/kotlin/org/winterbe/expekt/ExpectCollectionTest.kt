@@ -78,7 +78,7 @@ class ExpectCollectionTest {
     @Test
     fun notSizeProp() {
         passes { expect(listOf(1, 2, 3)).not.to.have.size.above(3) }
-        fails { expect(listOf(1, 2, 3)).not.to.have.size.below(2) }
+        fails { expect(listOf(1, 2, 3)).not.to.have.size.below(4) }
     }
 
     @Test

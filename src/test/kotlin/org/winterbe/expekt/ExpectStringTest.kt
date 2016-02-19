@@ -43,9 +43,9 @@ class ExpectStringTest {
 
     @Test
     fun notLengthProp() {
-//        passes { expect("abc").not.to.have.length.above(3) }
-        fails("expect abc not to have length below 2") {
-            expect("abc").not.to.have.length.below(2)
+        passes { expect("abc").not.to.have.length.above(3) }
+        fails("expect abc not to have length below 4") {
+            expect("abc").not.to.have.length.below(4)
         }
     }
 
