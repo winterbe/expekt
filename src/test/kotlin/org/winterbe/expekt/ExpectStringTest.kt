@@ -7,13 +7,17 @@ class ExpectStringTest {
     @Test
     fun notMatch() {
         passes { expect("abc").not.to.match(Regex(".")) }
-        fails { expect("abc").not.to.match(Regex(".*")) }
+        fails("expect abc not to match .*") {
+            expect("abc").not.to.match(Regex(".*"))
+        }
     }
 
     @Test
     fun match() {
         passes { expect("abc").to.match(Regex(".*")) }
-        fails { expect("abc").to.match(Regex(".")) }
+        fails("expect abc to match .") {
+            expect("abc").to.match(Regex("."))
+        }
     }
 
     @Test
@@ -22,83 +26,67 @@ class ExpectStringTest {
     }
 
     @Test
-    fun notContain2() {
-        fails { expect("abc").not.to.contain("b") }
-    }
-
-    @Test
-    fun notContain1() {
+    fun notContain() {
         passes { expect("abc").not.to.contain("d") }
-    }
-
-    @Test
-    fun contain2() {
-        fails { expect("abc").to.contain("d") }
+        fails("expect abc not to contain b") {
+            expect("abc").not.to.contain("b")
+        }
     }
 
     @Test
     fun contain1() {
         passes { expect("abc").to.contain("b") }
+        fails("expect abc to contain d") {
+            expect("abc").to.contain("d")
+        }
     }
 
     @Test
-    fun notLengthProp2() {
-        fails { expect("abc").not.to.have.length.below(2) }
+    fun notLengthProp() {
+//        passes { expect("abc").not.to.have.length.above(3) }
+        fails("expect abc not to have length below 2") {
+            expect("abc").not.to.have.length.below(2)
+        }
     }
 
     @Test
-    fun notLengthProp1() {
-        passes { expect("abc").not.to.have.length.above(3) }
-    }
-
-    @Test
-    fun lengthProp2() {
-        fails { expect("abc").to.have.length.equal(4) }
-    }
-
-    @Test
-    fun lengthProp1() {
+    fun lengthProp() {
         passes { expect("abc").to.have.length.above(2) }
+        fails("expect abc to have length equal 4") {
+            expect("abc").to.have.length.equal(4)
+        }
     }
 
     @Test
-    fun notLength2() {
-        fails { expect("abc").not.to.have.length(3) }
-    }
-
-    @Test
-    fun notLength1() {
+    fun notLength() {
         passes { expect("abc").not.to.have.length(4) }
+        fails("expect abc not to have length 3") {
+            expect("abc").not.to.have.length(3)
+        }
     }
 
     @Test
-    fun length2() {
-        fails { expect("abc").to.have.length(4) }
-    }
-
-    @Test
-    fun length1() {
+    fun length() {
         passes { expect("abc").to.have.length(3) }
+        fails("expect abc to have length 4") {
+            expect("abc").to.have.length(4)
+        }
     }
 
     @Test
-    fun notEmpty2() {
-        fails { expect("").to.not.be.empty() }
-    }
-
-    @Test
-    fun NotEmpty1() {
+    fun notEmpty() {
         passes { expect("abc").to.not.be.empty() }
+        fails("expect  to not be empty") {
+            expect("").to.not.be.empty()
+        }
     }
 
     @Test
-    fun empty2() {
-        fails { expect("abc").to.be.empty() }
-    }
-
-    @Test
-    fun empty1() {
+    fun empty() {
         passes { expect("").to.be.empty() }
+        fails("expect abc to be empty") {
+            expect("abc").to.be.empty()
+        }
     }
 
     @Test
@@ -107,43 +95,35 @@ class ExpectStringTest {
     }
 
     @Test
-    fun notEndWith2() {
-        fails { expect("abc").not.to.endWith("a") }
-    }
-
-    @Test
-    fun notEndWith1() {
+    fun notEndWith() {
         passes { expect("abc").not.to.endWith("b") }
+        fails("expect abc not to endWith c") {
+            expect("abc").not.to.endWith("c")
+        }
     }
 
     @Test
-    fun endWith2() {
-        fails { expect("abc").to.endWith("a") }
-    }
-
-    @Test
-    fun endWith1() {
+    fun endWith() {
         passes { expect("abc").to.endWith("bc") }
+        fails("expect abc to endWith a") {
+            expect("abc").to.endWith("a")
+        }
     }
 
     @Test
-    fun notStartWith2() {
-        fails { expect("abc").not.to.startWith("a") }
-    }
-
-    @Test
-    fun notStartWith1() {
+    fun notStartWith() {
         passes { expect("abc").not.to.startWith("b") }
+        fails("expect abc not to startWith a") {
+            expect("abc").not.to.startWith("a")
+        }
     }
 
     @Test
-    fun startWith2() {
-        fails { expect("abc").to.startWith("b") }
-    }
-
-    @Test
-    fun startWith1() {
+    fun startWith() {
         passes { expect("abc").to.startWith("a") }
+        fails("expect abc to startWith b") {
+            expect("abc").to.startWith("b")
+        }
     }
 
 }

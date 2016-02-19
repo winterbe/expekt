@@ -6,39 +6,52 @@ package org.winterbe.expekt
 class ExpectString(value: String?) : ExpectAny<String>(value) {
 
     val length: ExpectInt get() {
+        words.add("length")
         val expectInt = ExpectInt(value!!.length)
-        if (negated) {
-            return expectInt.not
-        }
+        expectInt.words.addAll(words)
+        expectInt.words.removeAt(0)
+        expectInt.words.removeAt(0)
+        expectInt.negated = negated
         return expectInt
     }
 
     fun match(regex: Regex): ExpectString {
+        words.add("match")
+        words.add(regex.pattern)
         verify { regex.matches(value!!) }
         return this
     }
 
     fun length(length: Int): ExpectString {
+        words.add("length")
+        words.add(length.toString())
         verify { value!!.length == length }
         return this
     }
 
     fun contain(other: String): ExpectString {
+        words.add("contain")
+        words.add(other)
         verify { value!!.indexOf(other) >= 0 }
         return this
     }
 
     fun empty(): ExpectString {
+        words.add("empty")
         verify { value!!.isEmpty() }
         return this
     }
 
     fun startWith(other: String): ExpectString {
+        words.add("startWith")
+        words.add(other)
         verify { value!!.startsWith(other) }
         return this
     }
 
     fun endWith(other: String): ExpectString {
+        words.add("endWith")
+        words.add(other)
         verify { value!!.endsWith(other) }
         return this
     }

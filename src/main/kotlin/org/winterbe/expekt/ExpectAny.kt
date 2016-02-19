@@ -5,9 +5,14 @@ package org.winterbe.expekt
  */
 open class ExpectAny<T>(val value: T?) {
 
-    protected val words = arrayListOf<String>()
+    internal val words = arrayListOf<String>()
 
-    protected var negated = false
+    internal var negated = false
+
+    init {
+        words.add("expect")
+        words.add(value.toString())
+    }
 
     open val not: ExpectAny<T> get() {
         negated = !negated
@@ -56,10 +61,8 @@ open class ExpectAny<T>(val value: T?) {
     }
 
     private fun throwError() {
-        words.add(0, value.toString())
-        words.add(0, "expect")
-        val msg = words.joinToString(separator = " ")
-        throw AssertionError(msg)
+        val message = words.joinToString(separator = " ")
+        throw AssertionError(message)
     }
 
     open val to: ExpectAny<T> get() {
