@@ -16,7 +16,7 @@ Chai API:
 ✔ most/lte
 ✔ within
 ✘ closeTo
-✘ match
+✔ match
 ✔ length
 ✔ string
 ✔ satisfy
@@ -49,9 +49,12 @@ Kotlin types:
 ✔ Boolean
 ✔ String
 ✔ Collection
-✘ Int
+✔ Int
 ✘ Long
 ✘ Double
+✘ Float
+✘ Short
+✘ Byte
 
 
 Later:
@@ -60,10 +63,12 @@ Later:
 ✘ List
 ✘ Set
 ✘ Map
-✘ Mutable/Imutable
+✘ Mutable/Immutable
 
 
 More:
 
 ✘ Returns
-✘ Error Messages
+✔ Error Messages
+✘ Docs
+✘ Maven Deploy
