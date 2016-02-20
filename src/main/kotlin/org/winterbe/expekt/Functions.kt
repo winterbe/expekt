@@ -1,8 +1,24 @@
 package org.winterbe.expekt
 
 
-fun <T> T?.should(): ExpectAny<T> {
+val <T> T?.should: ExpectAny<T> get() {
     return ExpectAny(this)
+}
+
+val Boolean?.should: ExpectBoolean get() {
+    return ExpectBoolean(this)
+}
+
+val String?.should: ExpectString get() {
+    return ExpectString(this)
+}
+
+val <T> Comparable<T>?.should: ExpectComparable<T> get() {
+    return ExpectComparable(this)
+}
+
+val <T> Collection<T>?.should: ExpectCollection<T> get() {
+    return ExpectCollection(this)
 }
 
 fun <T> expect(subject: T?): ExpectAny<T?> {

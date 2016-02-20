@@ -102,4 +102,12 @@ class ExpectAnyTest {
         }
     }
 
+    @Test
+    fun should() {
+        data class A(val a: String)
+        val a1 = A("1")
+        val a2 = A("1")
+        a1.should.equal(a2)
+    }
+
 }

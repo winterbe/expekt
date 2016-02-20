@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(value: Collection<T>): ExpectAny<Collection<T>>(value) {
+class ExpectCollection<T>(value: Collection<T>?): ExpectAny<Collection<T>>(value) {
 
     private var anyMode = false
     

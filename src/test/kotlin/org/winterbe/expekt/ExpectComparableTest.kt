@@ -83,4 +83,9 @@ class ExpectComparableTest {
         passes { expect(3).to.be.above(2).and.to.be.below(4) }
     }
 
+    @Test
+    fun should() {
+        3.should.be.above(2).and.below(4)
+    }
+
 }

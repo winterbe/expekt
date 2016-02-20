@@ -20,13 +20,13 @@ Chai API:
 ✔ length
 ✔ string
 ✔ satisfy
-✘ property
-✘ throw
-✘ change
 
 
 Irrelevant:
 
+✘ change
+✘ property
+✘ throw
 ✘ ok
 ✘ deep
 ✘ undefined
@@ -43,32 +43,11 @@ Irrelevant:
 ✘ members
 
 
-Kotlin types:
-
-✔ Any
-✔ Boolean
-✔ String
-✔ Collection
-✔ Int
-✘ Long
-✘ Double
-✘ Float
-✘ Short
-✘ Byte
-
-
-Later:
-
-✘ Date
-✘ List
-✘ Set
-✘ Map
-✘ Mutable/Immutable
-
-
 More:
 
 ✘ Returns
 ✔ Error Messages
+✔ should
+✘ should error messages
 ✘ Docs
 ✘ Maven Deploy

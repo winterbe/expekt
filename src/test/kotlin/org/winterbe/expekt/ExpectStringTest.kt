@@ -126,4 +126,9 @@ class ExpectStringTest {
         }
     }
 
+    @Test
+    fun should() {
+        "abc".should.startWith("a").and.endWith("bc")
+    }
+
 }

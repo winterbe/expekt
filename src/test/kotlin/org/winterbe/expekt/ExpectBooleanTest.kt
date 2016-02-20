@@ -36,4 +36,9 @@ class ExpectBooleanTest {
         }
     }
 
+    @Test
+    fun should() {
+        true.should.be.`true`
+    }
+
 }

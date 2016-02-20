@@ -137,4 +137,9 @@ class ExpectCollectionTest {
         }
     }
 
+    @Test
+    fun should() {
+        listOf(1, 2, 3).should.contain.all.elements(1, 2)
+    }
+
 }
