@@ -3,9 +3,9 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectComparable<T>(value: Comparable<T>?) : ExpectAny<Comparable<T>>(value) {
+open class ExpectComparable<T: Comparable<T>>(value: T?) : ExpectAny<T>(value) {
 
-    fun within(min: T, max: T): ExpectComparable<T> {
+    open fun within(min: T, max: T): ExpectComparable<T> {
         words.add("within")
         words.add(min.toString())
         words.add(max.toString())
@@ -13,28 +13,28 @@ class ExpectComparable<T>(value: Comparable<T>?) : ExpectAny<Comparable<T>>(valu
         return this
     }
 
-    fun most(other: T): ExpectComparable<T> {
+    open fun most(other: T): ExpectComparable<T> {
         words.add("most")
         words.add(other.toString())
         verify { value!! <= other }
         return this
     }
 
-    fun least(other: T): ExpectComparable<T> {
+    open fun least(other: T): ExpectComparable<T> {
         words.add("least")
         words.add(other.toString())
         verify { value!! >= other }
         return this
     }
 
-    fun above(other: T): ExpectComparable<T> {
+    open fun above(other: T): ExpectComparable<T> {
         words.add("above")
         words.add(other.toString())
         verify { value!! > other }
         return this
     }
 
-    fun below(other: T): ExpectComparable<T> {
+    open fun below(other: T): ExpectComparable<T> {
         words.add("below")
         words.add(other.toString())
         verify { value!! < other }

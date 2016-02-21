@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectString(value: String?) : ExpectAny<String>(value) {
+class ExpectString(value: String?) : ExpectComparable<String>(value) {
 
     val length: ExpectComparable<Int> get() {
         words.add("length")
@@ -146,4 +146,28 @@ class ExpectString(value: String?) : ExpectAny<String>(value) {
         return this
     }
 
+    override fun within(min: String, max: String): ExpectString {
+        super.within(min, max)
+        return this
+    }
+
+    override fun most(other: String): ExpectString {
+        super.most(other)
+        return this
+    }
+
+    override fun least(other: String): ExpectString {
+        super.least(other)
+        return this
+    }
+
+    override fun above(other: String): ExpectString {
+        super.above(other)
+        return this
+    }
+
+    override fun below(other: String): ExpectString {
+        super.below(other)
+        return this
+    }
 }

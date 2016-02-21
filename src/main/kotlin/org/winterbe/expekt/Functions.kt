@@ -13,7 +13,7 @@ val String?.should: ExpectString get() {
     return ExpectString(this)
 }
 
-val <T> Comparable<T>?.should: ExpectComparable<T> get() {
+val <T: Comparable<T>> T?.should: ExpectComparable<T> get() {
     return ExpectComparable(this)
 }
 

@@ -5,6 +5,11 @@ import org.junit.Test
 class ExpectStringTest {
 
     @Test
+    fun within() {
+        passes { expect("b").to.be.within("a", "c").and.to.have.length(1) }
+    }
+
+    @Test
     fun notMatch() {
         passes { expect("abc").not.to.match(Regex(".")) }
         fails("expect abc not to match .*") {
