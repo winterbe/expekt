@@ -3,15 +3,23 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-open class ExpectAny<T>(val value: T?) {
+open class ExpectAny<T>(val value: T?, val flavor: Flavor) {
 
     internal val words = arrayListOf<String>()
 
     internal var negated = false
 
     init {
-        words.add("expect")
-        words.add(value.toString())
+        when (flavor) {
+            Flavor.EXPECT -> {
+                words.add("expect")
+                words.add(value.toString())
+            }
+            Flavor.SHOULD -> {
+                words.add(value.toString())
+                words.add("should")
+            }
+        }
     }
 
     open val not: ExpectAny<T> get() {

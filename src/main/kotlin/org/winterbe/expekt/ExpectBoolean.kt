@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectBoolean(value: Boolean?) : ExpectAny<Boolean>(value) {
+class ExpectBoolean(value: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(value, flavor) {
 
     val `true`: Unit get() {
         words.add("true")

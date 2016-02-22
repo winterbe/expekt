@@ -3,11 +3,11 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectString(value: String?) : ExpectComparable<String>(value) {
+class ExpectString(value: String?, flavor: Flavor) : ExpectComparable<String>(value, flavor) {
 
     val length: ExpectComparable<Int> get() {
         words.add("length")
-        val expectInt = ExpectComparable(value!!.length)
+        val expectInt = ExpectComparable(value!!.length, this.flavor)
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
         expectInt.words.removeAt(0)

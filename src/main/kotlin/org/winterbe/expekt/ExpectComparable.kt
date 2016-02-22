@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-open class ExpectComparable<T: Comparable<T>>(value: T?) : ExpectAny<T>(value) {
+open class ExpectComparable<T: Comparable<T>>(value: T?, flavor: Flavor) : ExpectAny<T>(value, flavor) {
 
     open fun within(min: T, max: T): ExpectComparable<T> {
         words.add("within")

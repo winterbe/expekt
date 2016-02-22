@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(value: Collection<T>?): ExpectAny<Collection<T>>(value) {
+class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Collection<T>>(value, flavor) {
 
     private var anyMode = false
     
@@ -81,7 +81,7 @@ class ExpectCollection<T>(value: Collection<T>?): ExpectAny<Collection<T>>(value
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(value!!.size)
+        val expectInt = ExpectComparable(value!!.size, flavor)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)

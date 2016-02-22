@@ -107,7 +107,9 @@ class ExpectAnyTest {
         data class A(val a: String)
         val a1 = A("1")
         val a2 = A("1")
-        a1.should.equal(a2)
+        val a3 = A("2")
+        passes { a1.should.equal(a2) }
+        fails("A(a=1) should equal A(a=2)") { a1.should.equal(a3) }
     }
 
 }
