@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Collection<T>>(value, flavor) {
+class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Collection<T>>(subject, flavor) {
 
     private var anyMode = false
     
@@ -36,7 +36,7 @@ class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Coll
     fun contain(other: T): ExpectCollection<T> {
         words.add("contain")
         words.add(other.toString())
-        verify { value!!.contains(other) }
+        verify { subject!!.contains(other) }
         return this
     }
 
@@ -52,11 +52,11 @@ class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Coll
     }
 
     private fun containsAll(elements: Array<out T>): Boolean {
-        if (haveMode && elements.size != value!!.size) {
+        if (haveMode && elements.size != subject!!.size) {
             return false
         }
         for (element in elements) {
-            if (!value!!.contains(element)) {
+            if (!subject!!.contains(element)) {
                 return false
             }
         }
@@ -66,7 +66,7 @@ class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Coll
     private fun containsAny(elements: Array<out T>): Boolean {
         // is the same for haveAny
         for (element in elements) {
-            if (value!!.contains(element)) {
+            if (subject!!.contains(element)) {
                 return true
             }
         }
@@ -75,13 +75,13 @@ class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Coll
 
     fun empty(): ExpectCollection<T> {
         words.add("empty")
-        verify { value!!.isEmpty() }
+        verify { subject!!.isEmpty() }
         return this
     }
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(value!!.size, flavor)
+        val expectInt = ExpectComparable(subject!!.size, flavor)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
@@ -92,7 +92,7 @@ class ExpectCollection<T>(value: Collection<T>?, flavor: Flavor): ExpectAny<Coll
     fun size(size: Int): ExpectCollection<T> {
         words.add("size")
         words.add(size.toString())
-        verify { value!!.size == size }
+        verify { subject!!.size == size }
         return this
     }
 

@@ -3,16 +3,16 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectBoolean(value: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(value, flavor) {
+class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subject, flavor) {
 
     val `true`: Unit get() {
         words.add("true")
-        verify { value == true }
+        verify { subject == true }
     }
 
     val `false`: Unit get() {
         words.add("false")
-        verify { value == false }
+        verify { subject == false }
     }
 
     override val to: ExpectBoolean get() {

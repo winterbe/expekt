@@ -3,11 +3,11 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectString(value: String?, flavor: Flavor) : ExpectComparable<String>(value, flavor) {
+class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(subject, flavor) {
 
     val length: ExpectComparable<Int> get() {
         words.add("length")
-        val expectInt = ExpectComparable(value!!.length, this.flavor)
+        val expectInt = ExpectComparable(subject!!.length, this.flavor)
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
         expectInt.words.removeAt(0)
@@ -18,41 +18,41 @@ class ExpectString(value: String?, flavor: Flavor) : ExpectComparable<String>(va
     fun match(regex: Regex): ExpectString {
         words.add("match")
         words.add(regex.pattern)
-        verify { regex.matches(value!!) }
+        verify { regex.matches(subject!!) }
         return this
     }
 
     fun length(length: Int): ExpectString {
         words.add("length")
         words.add(length.toString())
-        verify { value!!.length == length }
+        verify { subject!!.length == length }
         return this
     }
 
     fun contain(other: String): ExpectString {
         words.add("contain")
         words.add(other)
-        verify { value!!.indexOf(other) >= 0 }
+        verify { subject!!.indexOf(other) >= 0 }
         return this
     }
 
     fun empty(): ExpectString {
         words.add("empty")
-        verify { value!!.isEmpty() }
+        verify { subject!!.isEmpty() }
         return this
     }
 
     fun startWith(other: String): ExpectString {
         words.add("startWith")
         words.add(other)
-        verify { value!!.startsWith(other) }
+        verify { subject!!.startsWith(other) }
         return this
     }
 
     fun endWith(other: String): ExpectString {
         words.add("endWith")
         words.add(other)
-        verify { value!!.endsWith(other) }
+        verify { subject!!.endsWith(other) }
         return this
     }
 

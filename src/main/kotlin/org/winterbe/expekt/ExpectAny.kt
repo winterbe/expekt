@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-open class ExpectAny<T>(val value: T?, val flavor: Flavor) {
+open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor) {
 
     internal val words = arrayListOf<String>()
 
@@ -13,10 +13,10 @@ open class ExpectAny<T>(val value: T?, val flavor: Flavor) {
         when (flavor) {
             Flavor.EXPECT -> {
                 words.add("expect")
-                words.add(value.toString())
+                words.add(subject.toString())
             }
             Flavor.SHOULD -> {
-                words.add(value.toString())
+                words.add(subject.toString())
                 words.add("should")
             }
         }
@@ -30,32 +30,32 @@ open class ExpectAny<T>(val value: T?, val flavor: Flavor) {
 
     open val `null`: ExpectAny<T> get() {
         words.add("null")
-        verify { value == null }
+        verify { subject == null }
         return this
     }
 
     fun <S: T> instanceof(type: Class<S>) {
         words.add("instanceof")
         words.add(type.toString())
-        verify { type.isInstance(value) }
+        verify { type.isInstance(subject) }
     }
 
     fun identity(other: T?) {
         words.add("identity")
         words.add(other.toString())
-        verify { value === other }
+        verify { subject === other }
     }
 
     fun equal(other: T?) {
         words.add("equal")
         words.add(other.toString())
-        verify { value == other }
+        verify { subject == other }
     }
 
     fun satisfy(predicate: (a: T) -> Boolean) {
         words.add("satisfy")
         words.add("predicate")
-        verify { predicate(value!!) }
+        verify { predicate(subject!!) }
     }
 
     protected fun verify(rule: () -> Boolean) {

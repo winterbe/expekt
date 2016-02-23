@@ -3,7 +3,7 @@ package org.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(value, flavor) {
+class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(subject, flavor) {
 
     private var anyMode = false
 
@@ -33,12 +33,12 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
         return this
     }
 
-//    fun contain(entry: Pair<K, V>): ExpectMap<K, V> {
-//        words.add("contain")
-//        words.add(entry.toString())
-//        verify { false }
-//        return this
-//    }
+    fun contain(entry: Pair<K, V>): ExpectMap<K, V> {
+        words.add("contain")
+        words.add(entry.toString())
+        verify { subject!![entry.first] == entry.second }
+        return this
+    }
 
     fun keys(vararg keys: K): ExpectMap<K, V> {
         words.add("keys")
@@ -63,11 +63,11 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
     }
 
     private fun containsAllKeys(keys: Array<out K>): Boolean {
-        if (haveMode && keys.size != value!!.size) {
+        if (haveMode && keys.size != subject!!.size) {
             return false
         }
         for (key in keys) {
-            if (!value!!.containsKey(key)) {
+            if (!subject!!.containsKey(key)) {
                 return false
             }
         }
@@ -77,7 +77,7 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
     private fun containsAnyKeys(keys: Array<out K>): Boolean {
         // is the same for haveAny
         for (key in keys) {
-            if (value!!.containsKey(key)) {
+            if (subject!!.containsKey(key)) {
                 return true
             }
         }
@@ -85,11 +85,11 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
     }
 
     private fun containsAllValues(values: Array<out V>): Boolean {
-        if (haveMode && values.size != value!!.size) {
+        if (haveMode && values.size != subject!!.size) {
             return false
         }
         for (v in values) {
-            if (!value!!.containsValue(v)) {
+            if (!subject!!.containsValue(v)) {
                 return false
             }
         }
@@ -99,7 +99,7 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
     private fun containsAnyValues(values: Array<out V>): Boolean {
         // is the same for haveAny
         for (v in values) {
-            if (value!!.containsValue(v)) {
+            if (subject!!.containsValue(v)) {
                 return true
             }
         }
@@ -108,13 +108,13 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
 
     fun empty(): ExpectMap<K, V> {
         words.add("empty")
-        verify { value!!.isEmpty() }
+        verify { subject!!.isEmpty() }
         return this
     }
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(value!!.size, flavor)
+        val expectInt = ExpectComparable(subject!!.size, flavor)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
@@ -125,7 +125,7 @@ class ExpectMap<K, V>(value: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(v
     fun size(size: Int): ExpectMap<K, V> {
         words.add("size")
         words.add(size.toString())
-        verify { value!!.size == size }
+        verify { subject!!.size == size }
         return this
     }
 
