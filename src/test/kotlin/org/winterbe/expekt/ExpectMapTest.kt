@@ -5,6 +5,38 @@ import org.junit.Test
 class ExpectMapTest {
 
     @Test
+    fun keysContainAny() {
+        val map = mapOf(1 to 1, 2 to 2, 3 to 3)
+        passes { expect(map).to.contain.any.keys(1, 2, 3) }
+        passes { expect(map).to.contain.any.keys(1, 4) }
+        fails("expect {1=1, 2=2, 3=3} to contain any keys [4, 5]") {
+            expect(map).to.contain.any.keys(4, 5)
+        }
+    }
+
+    @Test
+    fun keysContainAll() {
+        val map = mapOf(1 to 1, 2 to 2, 3 to 3)
+        passes { expect(map).to.contain.all.keys(1, 2, 3) }
+        passes { expect(map).to.contain.all.keys(1, 2) }
+        passes { expect(map).to.contain.all.keys(1) }
+        fails("expect {1=1, 2=2, 3=3} to contain all keys [1, 2, 4]") {
+            expect(map).to.contain.all.keys(1, 2, 4)
+        }
+    }
+
+    @Test
+    fun keysContainImplicitAll() {
+        val map = mapOf(1 to 1, 2 to 2, 3 to 3)
+        passes { expect(map).to.contain.keys(1, 2, 3) }
+        passes { expect(map).to.contain.keys(1, 2) }
+        passes { expect(map).to.contain.keys(1) }
+        fails("expect {1=1, 2=2, 3=3} to contain keys [1, 2, 4]") {
+            expect(map).to.contain.keys(1, 2, 4)
+        }
+    }
+
+    @Test
     fun size() {
         passes { expect(mapOf<Int, Int>()).to.be.of.size(0) }
         fails("expect {a=1} to have size 0") { expect(mapOf("a" to 1)).to.have.size(0) }
