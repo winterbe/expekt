@@ -6,14 +6,40 @@
     <groupId>com.winterbe</groupId>
     <artifactId>expekt</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <name>Expekt</name>
+    <description>BDD assertion library for Kotlin</description>
+    <url>https://github.com/winterbe/expekt</url>
     <developers>
         <developer>
             <name>Benjamin Winterberg</name>
-            <url>http://winterbe.com</url>
+            <email>maven@winterbe.com</email>
+            <url>https://github.com/winterbe</url>
+            <id>winterbe</id>
         </developer>
     </developers>
+    <scm>
+        <url>https://github.com/winterbe/expekt</url>
+        <connection>scm:git:git@github.com:winterbe/expekt.git</connection>
+        <developerConnection>scm:git:git@github.com:winterbe/expekt.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/winterbe/expekt/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>TravisCI</system>
+        <url>https://travis-ci.org/winterbe/expekt</url>
+    </ciManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <properties>
         <kotlin.version>1.0.0</kotlin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
         <dependency>
