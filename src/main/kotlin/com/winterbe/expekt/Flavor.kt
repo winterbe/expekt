@@ -1,4 +1,4 @@
-package org.winterbe.expekt
+package com.winterbe.expekt
 
 enum class Flavor {
     EXPECT, SHOULD

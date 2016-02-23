@@ -44,7 +44,7 @@ Expekt will be available via Maven Central soon. Currently you have to clone thi
 
 ```xml
 <dependency>
-    <groupId>org.winterbe.expekt</groupId>
+    <groupId>com.winterbe</groupId>
     <artifactId>expekt</artifactId>
     <version>0.1-SNAPSHOT</version>
     <scope>test</scope>

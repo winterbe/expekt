@@ -1,4 +1,4 @@
-package org.winterbe.expekt
+package com.winterbe.expekt
 
 import org.hamcrest.CoreMatchers
 import org.junit.Assert

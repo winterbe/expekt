@@ -1,4 +1,4 @@
-package org.winterbe.expekt
+package com.winterbe.expekt
 
 
 val <T> T?.should: ExpectAny<T> get() {
