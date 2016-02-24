@@ -170,4 +170,24 @@ class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(
         super.below(other)
         return this
     }
+
+    override fun <S : String> instanceof(type: Class<S>): ExpectString {
+        super.instanceof(type)
+        return this
+    }
+
+    override fun identity(other: String?): ExpectString {
+        super.identity(other)
+        return this
+    }
+
+    override fun equal(other: String?): ExpectString {
+        super.equal(other)
+        return this
+    }
+
+    override fun satisfy(predicate: (String) -> Boolean): ExpectString {
+        super.satisfy(predicate)
+        return this
+    }
 }

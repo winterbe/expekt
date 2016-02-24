@@ -130,4 +130,24 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         super.`null`
         return this
     }
+
+    override fun <S : T> instanceof(type: Class<S>): ExpectComparable<T> {
+        super.instanceof(type)
+        return this
+    }
+
+    override fun identity(other: T?): ExpectComparable<T> {
+        super.identity(other)
+        return this
+    }
+
+    override fun equal(other: T?): ExpectComparable<T> {
+        super.equal(other)
+        return this
+    }
+
+    override fun satisfy(predicate: (T) -> Boolean): ExpectComparable<T> {
+        super.satisfy(predicate)
+        return this
+    }
 }

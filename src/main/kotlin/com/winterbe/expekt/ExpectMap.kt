@@ -213,4 +213,24 @@ class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>
         super.`null`
         return this
     }
+
+    override fun <S : Map<K, V>> instanceof(type: Class<S>): ExpectMap<K, V> {
+        super.instanceof(type)
+        return this
+    }
+
+    override fun identity(other: Map<K, V>?): ExpectMap<K, V> {
+        super.identity(other)
+        return this
+    }
+
+    override fun equal(other: Map<K, V>?): ExpectMap<K, V> {
+        super.equal(other)
+        return this
+    }
+
+    override fun satisfy(predicate: (Map<K, V>) -> Boolean): ExpectMap<K, V> {
+        super.satisfy(predicate)
+        return this
+    }
 }

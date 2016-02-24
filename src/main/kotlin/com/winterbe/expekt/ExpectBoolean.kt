@@ -105,4 +105,23 @@ class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subj
         return this
     }
 
+    override fun <S : Boolean> instanceof(type: Class<S>): ExpectBoolean {
+        super.instanceof(type)
+        return this
+    }
+
+    override fun identity(other: Boolean?): ExpectBoolean {
+        super.identity(other)
+        return this
+    }
+
+    override fun equal(other: Boolean?): ExpectBoolean {
+        super.equal(other)
+        return this
+    }
+
+    override fun satisfy(predicate: (Boolean) -> Boolean): ExpectBoolean {
+        super.satisfy(predicate)
+        return this
+    }
 }

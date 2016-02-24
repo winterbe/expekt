@@ -34,28 +34,32 @@ open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor)
         return this
     }
 
-    fun <S: T> instanceof(type: Class<S>) {
+    open fun <S: T> instanceof(type: Class<S>): ExpectAny<T> {
         words.add("instanceof")
         words.add(type.toString())
         verify { type.isInstance(subject) }
+        return this
     }
 
-    fun identity(other: T?) {
+    open fun identity(other: T?): ExpectAny<T> {
         words.add("identity")
         words.add(other.toString())
         verify { subject === other }
+        return this
     }
 
-    fun equal(other: T?) {
+    open fun equal(other: T?): ExpectAny<T> {
         words.add("equal")
         words.add(other.toString())
         verify { subject == other }
+        return this
     }
 
-    fun satisfy(predicate: (a: T) -> Boolean) {
+    open fun satisfy(predicate: (a: T) -> Boolean): ExpectAny<T> {
         words.add("satisfy")
         words.add("predicate")
         verify { predicate(subject!!) }
+        return this
     }
 
     protected fun verify(rule: () -> Boolean) {

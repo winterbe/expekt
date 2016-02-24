@@ -181,4 +181,23 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
         return this
     }
 
+    override fun <S : Collection<T>> instanceof(type: Class<S>): ExpectCollection<T> {
+        super.instanceof(type)
+        return this
+    }
+
+    override fun identity(other: Collection<T>?): ExpectCollection<T> {
+        super.identity(other)
+        return this
+    }
+
+    override fun equal(other: Collection<T>?): ExpectCollection<T> {
+        super.equal(other)
+        return this
+    }
+
+    override fun satisfy(predicate: (Collection<T>) -> Boolean): ExpectCollection<T> {
+        super.satisfy(predicate)
+        return this
+    }
 }
