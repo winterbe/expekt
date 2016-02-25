@@ -17,6 +17,10 @@ val <T: Comparable<T>> T?.should: ExpectComparable<T> get() {
     return ExpectComparable(this, Flavor.SHOULD)
 }
 
+val Double?.should: ExpectDouble get() {
+    return ExpectDouble(this, Flavor.SHOULD)
+}
+
 val <T> Collection<T>?.should: ExpectCollection<T> get() {
     return ExpectCollection(this, Flavor.SHOULD)
 }
@@ -35,6 +39,10 @@ fun expect(subject: Boolean): ExpectBoolean {
 
 fun <T: Comparable<T>> expect(subject: T?): ExpectComparable<T> {
     return ExpectComparable(subject, Flavor.EXPECT)
+}
+
+fun expect(subject: Double?): ExpectDouble {
+    return ExpectDouble(subject, Flavor.EXPECT)
 }
 
 fun expect(subject: String): ExpectString {
