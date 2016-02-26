@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Expekt by winterbe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Expekt</h1>
+      <h2 class="project-tagline">BDD assertion library for Kotlin</h2>
+      <a href="https://github.com/winterbe/expekt" class="btn">View on GitHub</a>
+      <a href="https://github.com/winterbe/expekt/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/winterbe/expekt/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="expekt-" class="anchor" href="#expekt-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Expekt <a href="https://travis-ci.org/winterbe/expekt"><img src="https://travis-ci.org/winterbe/expekt.svg?branch=master" alt="Travic CI"></a>
+</h1>
+
+<p>Expekt is a (work in progress) BDD assertion library for <a href="http://kotlinlang.org/">Kotlin</a>, inspired by <a href="http://chaijs.com/">Chai.js</a>. It works with your favorite test runner such as <a href="http://junit.org/">JUnit</a> and <a href="http://jetbrains.github.io/spek/">Spek</a>.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre>class <span class="pl-en">ExpektTest</span> {
+    @Test
+    <span class="pl-k">fun</span> <span class="pl-en">helloExpekt</span>() {
+        <span class="pl-c1">23.</span>should<span class="pl-k">.</span>equal(<span class="pl-c1">23</span>)
+        <span class="pl-s"><span class="pl-pds">"</span>Kotlin<span class="pl-pds">"</span></span><span class="pl-k">.</span>should<span class="pl-k">.</span>not<span class="pl-k">.</span>contain(<span class="pl-s"><span class="pl-pds">"</span>Scala<span class="pl-pds">"</span></span>)
+        listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)<span class="pl-k">.</span>should<span class="pl-k">.</span>have<span class="pl-k">.</span>size<span class="pl-k">.</span>above(<span class="pl-c1">1</span>)
+    }
+}</pre></div>
+
+<blockquote>
+<p><a href="https://twitter.com/winterbe_">Follow on Twitter</a> for updates!</p>
+</blockquote>
+
+<h3>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h3>
+
+<p>Expekt is available via <a href="https://repo1.maven.org/maven2/com/winterbe/expekt/">Maven Central</a>. Just add the dependency to your Maven POM or Gradle build config.</p>
+
+<h5>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven</h5>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;com.winterbe&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;expekt&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;0.2.0&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">scope</span>&gt;test&lt;/<span class="pl-ent">scope</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<h5>
+<a id="gradle" class="anchor" href="#gradle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gradle</h5>
+
+<div class="highlight highlight-source-groovy"><pre>testCompile <span class="pl-s"><span class="pl-pds">"</span>com.winterbe:expekt:0.2.0<span class="pl-pds">"</span></span></pre></div>
+
+<h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h3>
+
+<p>Expekt let's you write assertions in natural english language by building fluent sentences in your JUnit tests.</p>
+
+<p>It comes in two flavors <code>should</code> and <code>expect</code>, both exposing the same API. It's up to you which variant to use. The property <code>should</code> is available on any object (e.g. <code>myObject.should</code>), even on <code>null</code>. The function <code>expect</code> accepts any object as parameter (e.g. <code>expect(myObject)</code>) instead.</p>
+
+<p>When using IntelliJ IDEA you can simply use <code>expect</code> and <code>should</code> from classpath. The IDE handles all imports for you. In case you have to handle imports manually, add one of those to your test file:</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-k">import</span> com.winterbe.expekt.expect
+<span class="pl-k">import</span> com.winterbe.expekt.should</pre></div>
+
+<p>The Expekt API consists of many chainable properties and functions. Properties like <code>to</code>, <code>be</code> and <code>which</code> are provided to improve readibility. They don't serve any semantical meaning. The property <code>not</code> is used to negate expectations. Depending on the type of the initial value plenty of properties and functions are available to assert different aspects of the value, e.g. you can assert that a collection contains some elements, that a number is within it's bounds or that a string matches a given regex pattern.</p>
+
+<p>See <a href="APIDOC.md">API doc</a> for all available assertion properties and functions.</p>
+
+<h3>
+<a id="what-happens-when-expectations-fail" class="anchor" href="#what-happens-when-expectations-fail" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What happens when expectations fail?</h3>
+
+<p>When an expectation fails Expekt throws a <code>java.lang.AssertionError</code> containing a readable message, so you can easily see what's going wrong.</p>
+
+<div class="highlight highlight-source-Kotlin"><pre>class <span class="pl-en">FailingTest</span> {
+    @Test
+    <span class="pl-k">fun</span> <span class="pl-en">thisTestFails</span>() {
+        <span class="pl-c1">3.4</span><span class="pl-k">.</span>should<span class="pl-k">.</span>be<span class="pl-k">.</span>closeTo(<span class="pl-c1">3.2</span>, delta <span class="pl-k">=</span> <span class="pl-c1">0.1</span>)
+    }
+}</pre></div>
+
+<p>The above test fails, resulting in the following exception:</p>
+
+<pre><code>java.lang.AssertionError: 3.4 should be closeTo 3.2 ±0.1
+
+    at com.winterbe.expekt.ExpectAny.fail(ExpectAny.kt:77)
+    at com.winterbe.expekt.ExpectAny.verify(ExpectAny.kt:68)
+    at com.winterbe.expekt.ExpectDouble.closeTo(ExpectDouble.kt:12)
+    at com.example.ExampleTest.example1(ExampleTest.kt:10)
+</code></pre>
+
+<h3>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h3>
+
+<p>Example assertions using the <code>should</code> property:</p>
+
+<div class="highlight highlight-source-Kotlin"><pre><span class="pl-c1">23.</span>should<span class="pl-k">.</span>equal(<span class="pl-c1">23</span>)
+<span class="pl-c1">null</span><span class="pl-k">.</span>should<span class="pl-k">.</span>be<span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">`</span>null<span class="pl-pds">`</span></span>
+<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span><span class="pl-k">.</span>should<span class="pl-k">.</span>not<span class="pl-k">.</span>equal(<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>)
+<span class="pl-c1">3.</span>should<span class="pl-k">.</span>satisfy { it <span class="pl-k">%</span> <span class="pl-c1">2</span> <span class="pl-k">==</span> <span class="pl-c1">1</span> }
+<span class="pl-c1">3.</span>should<span class="pl-k">.</span>be<span class="pl-k">.</span>above(<span class="pl-c1">2</span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>below(<span class="pl-c1">4</span>)
+<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span><span class="pl-k">.</span>should<span class="pl-k">.</span>contain(<span class="pl-s"><span class="pl-pds">"</span>bc<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>startWith(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>)
+<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span><span class="pl-k">.</span>should<span class="pl-k">.</span>not<span class="pl-k">.</span>have<span class="pl-k">.</span>length<span class="pl-k">.</span>above(<span class="pl-c1">3</span>)
+<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span><span class="pl-k">.</span>should<span class="pl-k">.</span>not<span class="pl-k">.</span>match(Regex(<span class="pl-s"><span class="pl-pds">"</span>[0-9]+<span class="pl-pds">"</span></span>))
+listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)<span class="pl-k">.</span>should<span class="pl-k">.</span>contain(<span class="pl-c1">3</span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>have<span class="pl-k">.</span>length<span class="pl-k">.</span>above(<span class="pl-c1">2</span>)
+listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)<span class="pl-k">.</span>should<span class="pl-k">.</span>contain<span class="pl-k">.</span>any<span class="pl-k">.</span>elements(<span class="pl-c1">1</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>)
+listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)<span class="pl-k">.</span>should<span class="pl-k">.</span>have<span class="pl-k">.</span>all<span class="pl-k">.</span>elements(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)
+mapOf(<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>should<span class="pl-k">.</span>contain(<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Example assertions using the <code>expect</code> function:</p>
+
+<div class="highlight highlight-source-Kotlin"><pre>expect(<span class="pl-c1">23</span>)<span class="pl-k">.</span>to<span class="pl-k">.</span>equal(<span class="pl-c1">23</span>)
+expect(<span class="pl-c1">null</span>)<span class="pl-k">.</span>to<span class="pl-k">.</span>be<span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">`</span>null<span class="pl-pds">`</span></span>
+expect(<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>not<span class="pl-k">.</span>to<span class="pl-k">.</span>equal(<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>)
+expect(<span class="pl-c1">3</span>)<span class="pl-k">.</span>not<span class="pl-k">.</span>to<span class="pl-k">.</span>satisfy { it <span class="pl-k">%</span> <span class="pl-c1">2</span> <span class="pl-k">==</span> <span class="pl-c1">1</span> }
+expect(<span class="pl-c1">3</span>)<span class="pl-k">.</span>to<span class="pl-k">.</span>be<span class="pl-k">.</span>above(<span class="pl-c1">2</span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>to<span class="pl-k">.</span>be<span class="pl-k">.</span>below(<span class="pl-c1">4</span>)
+expect(<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>to<span class="pl-k">.</span>contain(<span class="pl-s"><span class="pl-pds">"</span>bc<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>to<span class="pl-k">.</span>startWith(<span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>)
+expect(<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>not<span class="pl-k">.</span>to<span class="pl-k">.</span>have<span class="pl-k">.</span>length<span class="pl-k">.</span>above(<span class="pl-c1">3</span>)
+expect(<span class="pl-s"><span class="pl-pds">"</span>abc<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>not<span class="pl-k">.</span>to<span class="pl-k">.</span>match(Regex(<span class="pl-s"><span class="pl-pds">"</span>[0-9]+<span class="pl-pds">"</span></span>))
+expect(listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>))<span class="pl-k">.</span>to<span class="pl-k">.</span>contain(<span class="pl-c1">3</span>)<span class="pl-k">.</span>and<span class="pl-k">.</span>to<span class="pl-k">.</span>have<span class="pl-k">.</span>length<span class="pl-k">.</span>above(<span class="pl-c1">2</span>)
+expect(listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>))<span class="pl-k">.</span>to<span class="pl-k">.</span>contain<span class="pl-k">.</span>any<span class="pl-k">.</span>elements(<span class="pl-c1">1</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>)
+expect(listOf(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>))<span class="pl-k">.</span>to<span class="pl-k">.</span>have<span class="pl-k">.</span>all<span class="pl-k">.</span>elements(<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>)
+expect(mapOf(<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>))<span class="pl-k">.</span>to<span class="pl-k">.</span>contain(<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span> to <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>)</pre></div>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h3>
+
+<p>MIT</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/winterbe/expekt">Expekt</a> is maintained by <a href="https://github.com/winterbe">winterbe</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-48569937-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
