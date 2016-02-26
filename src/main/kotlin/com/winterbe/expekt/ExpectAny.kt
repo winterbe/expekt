@@ -65,14 +65,14 @@ open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor)
     protected fun verify(rule: () -> Boolean) {
         val truthy = rule()
         if (!truthy && !negated) {
-            throwError()
+            fail()
         }
         if (truthy && negated) {
-            throwError()
+            fail()
         }
     }
 
-    private fun throwError() {
+    private fun fail() {
         val message = words.joinToString(separator = " ")
         throw AssertionError(message)
     }
