@@ -1,20 +1,15 @@
 package com.winterbe.expekt
 
-import java.math.BigDecimal
-
 /**
  * @author Benjamin Winterberg
  */
 class ExpectDouble(subject: Double?, flavor: Flavor) : ExpectComparable<Double>(subject, flavor) {
 
-    fun closeTo(other: Double): ExpectDouble {
+    fun closeTo(other: Double, delta: Double = 0.0): ExpectDouble {
         words.add("closeTo")
         words.add(other.toString())
-        verify {
-            val decimalDigits = BigDecimal(other.toString()).scale()
-            // TODO round subject to decimalDigits and compare both
-            false
-        }
+        words.add("±" + delta.toString())
+        verify { subject!! >= other - delta && subject <= other + delta }
         return this
     }
 
