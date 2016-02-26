@@ -13,6 +13,8 @@ class ExpektTest {
 }
 ```
 
+> [Follow on Twitter](https://twitter.com/winterbe_) for updates!
+
 ### Getting started
 
 Expekt is available via [Maven Central](https://repo1.maven.org/maven2/com/winterbe/expekt/). Just add the dependency to your Maven POM or Gradle build config.
@@ -36,11 +38,11 @@ testCompile "com.winterbe:expekt:0.1.0"
 
 ### Introduction
 
-Expekt let's you write test assertions in natural english language by building fluent sentences. It works with your favorite test runners, e.g. JUnit, TestNG and Spek. Just write your tests as usual and replace your existing assertions (e.g. Hamcrest) with Expekt.
+Expekt let's you write assertions in natural english language by building fluent sentences in your JUnit tests.
 
-Expekt comes in two flavors `should` and `expect`, both exposing the same API. It's up to you which variant to use. The property `should` is available on any objects (e.g. `myObject.should`) even on nulls. The function `expect` instead accepts any object as parameter (e.g. `expect(myObject)`).
+It comes in two flavors `should` and `expect`, both exposing the same API. It's up to you which variant to use. The property `should` is available on any object (e.g. `myObject.should`), even on `null`. The function `expect` accepts any object as parameter (e.g. `expect(myObject)`) instead.
 
-When using IntelliJ IDEA you can simply use `expect` and `should` from the classpath. IntelliJ handles all imports for you. In case you have to handle imports manually, add one of those to your test file:
+When using IntelliJ IDEA you can simply use `expect` and `should` from classpath. The IDE handles all imports for you. In case you have to handle imports manually, add one of those to your test file:
 
 ```kotlin
 import com.winterbe.expekt.expect
@@ -51,9 +53,9 @@ The Expekt API consists of many chainable properties and functions. Properties l
 
 See [API doc](APIDOC.md) for all available assertion properties and functions.
 
-### What happens when expections fail?
+### What happens when expectations fail?
 
-When an expection fails, Expekt throws a `java.lang.AssertionError` containing a readable message, so you can easily see what's going wrong.
+When an expectation fails Expekt throws a `java.lang.AssertionError` containing a readable message, so you can easily see what's going wrong.
 
 ```kotlin
 class FailingTest {
