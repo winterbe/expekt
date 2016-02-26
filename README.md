@@ -36,12 +36,20 @@ testCompile "com.winterbe:expekt:0.1.0"
 
 ### Introduction
 
-Expekt enables you to formulate test assertions in natural english language by building fluent sentences. It comes in two flavors `should` and `expect`, both exposing the same API. It's up to you which variant to use. The property `should` is available on any objects (e.g. `myObject.should`) even on nulls. The function `expect` instead accepts any object as parameter (e.g. `expect(myObject)`).
+Expekt let's you write test assertions in natural english language by building fluent sentences. It works with your favorite test runners, e.g. JUnit, TestNG and Spek. Just write your tests as usual and replace your existing assertions (e.g. Hamcrest) with Expekt.
+
+Expekt comes in two flavors `should` and `expect`, both exposing the same API. It's up to you which variant to use. The property `should` is available on any objects (e.g. `myObject.should`) even on nulls. The function `expect` instead accepts any object as parameter (e.g. `expect(myObject)`).
+
+When using IntelliJ IDEA you can simply use `expect` and `should` from the classpath. IntelliJ handles all imports for you. In case you have to handle imports manually, add one of those to your test file:
 
 ```kotlin
 import com.winterbe.expekt.expect
 import com.winterbe.expekt.should
 ```
+
+The Expekt API consists of many chainable properties and functions. Properties like `to`, `be` and `which` are provided to improve readibility. They don't serve any semantical meaning. The property `not` is used to negate expectations. Depending on the type of the initial value plenty of properties and functions are available to assert different aspects of the value, e.g. you can assert that a collection contains some elements, that a number is within it's bounds or that a string matches a given regex pattern.
+
+See [API doc](APIDOC.md) for all available assertion properties and functions.
 
 ### What happens when expections fail?
 
@@ -69,7 +77,7 @@ java.lang.AssertionError: 3.4 should be closeTo 3.2 ±0.1
 
 ### Examples
 
-##### `should`
+Example assertions using the `should` property:
 
 ```kotlin
 23.should.equal(23)
@@ -86,7 +94,7 @@ listOf(1, 2, 3).should.have.all.elements(1, 2, 3)
 mapOf("foo" to "bar", "bar" to "foo").should.contain("foo" to "bar")
 ```
 
-##### `expect`
+Example assertions using the `expect` function:
 
 ```kotlin
 expect(23).to.equal(23)
@@ -102,10 +110,6 @@ expect(listOf(1, 2, 3)).to.contain.any.elements(1, 3, 4)
 expect(listOf(1, 2, 3)).to.have.all.elements(1, 2, 3)
 expect(mapOf("foo" to "bar", "bar" to "foo")).to.contain("foo" to "bar")
 ```
-
-### API Doc
-
-Work in progress...
 
 ### License
 
