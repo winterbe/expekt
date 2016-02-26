@@ -38,6 +38,11 @@ testCompile "com.winterbe:expekt:0.1.0"
 
 Expekt enables you to formulate test assertions in natural english language by building fluent sentences. It comes in two flavors `should` and `expect`, both exposing the same API. It's up to you which variant to use. The property `should` is available on any objects (e.g. `myObject.should`) even on nulls. The function `expect` instead accepts any object as parameter (e.g. `expect(myObject)`).
 
+```kotlin
+import com.winterbe.expekt.expect
+import com.winterbe.expekt.should
+```
+
 ### What happens when expections fail?
 
 When an expection fails, Expekt throws a `java.lang.AssertionError` containing a readable message, so you can easily see what's going wrong.
