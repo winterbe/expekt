@@ -143,9 +143,9 @@ class ExpectMapTest {
 
     @Test
     fun empty() {
-        passes { mapOf<Int, Int>().should.be.empty() }
-        fails("{a=1} should be empty") { mapOf("a" to 1).should.be.empty() }
-        passes { mapOf(1 to 2).should.not.be.empty() }
+        passes { mapOf<Int, Int>().should.be.empty }
+        fails("{a=1} should be empty") { mapOf("a" to 1).should.be.empty }
+        passes { mapOf(1 to 2).should.not.be.empty }
     }
 
 }

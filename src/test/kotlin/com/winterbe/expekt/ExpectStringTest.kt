@@ -80,17 +80,17 @@ class ExpectStringTest {
 
     @Test
     fun notEmpty() {
-        passes { expect("abc").to.not.be.empty() }
+        passes { expect("abc").to.not.be.empty }
         fails("expect  to not be empty") {
-            expect("").to.not.be.empty()
+            expect("").to.not.be.empty
         }
     }
 
     @Test
     fun empty() {
-        passes { expect("").to.be.empty() }
+        passes { expect("").to.be.empty }
         fails("expect abc to be empty") {
-            expect("abc").to.be.empty()
+            expect("abc").to.be.empty
         }
     }
 

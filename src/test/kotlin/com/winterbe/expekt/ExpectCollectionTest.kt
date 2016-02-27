@@ -106,18 +106,18 @@ class ExpectCollectionTest {
     }
 
     @Test
-    fun notEmpty1() {
-        passes { expect(listOf(1, 2, 3)).not.to.be.empty() }
+    fun notEmpty() {
+        passes { expect(listOf(1, 2, 3)).not.to.be.empty }
         fails("expect [] not to be empty") {
-            expect(listOf<Int>()).not.to.be.empty()
+            expect(listOf<Int>()).not.to.be.empty
         }
     }
 
     @Test
-    fun empty1() {
-        passes { expect(listOf<Int>()).to.be.empty() }
+    fun empty() {
+        passes { expect(listOf<Int>()).to.be.empty }
         fails("expect [1, 2, 3] to be empty") {
-            expect(listOf(1, 2, 3)).to.be.empty()
+            expect(listOf(1, 2, 3)).to.be.empty
         }
     }
 

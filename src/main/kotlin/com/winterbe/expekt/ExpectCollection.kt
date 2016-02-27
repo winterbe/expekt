@@ -73,7 +73,7 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
         return false
     }
 
-    fun empty(): ExpectCollection<T> {
+    val empty: ExpectCollection<T> get() {
         words.add("empty")
         verify { subject!!.isEmpty() }
         return this

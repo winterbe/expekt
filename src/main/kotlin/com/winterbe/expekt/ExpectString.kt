@@ -15,6 +15,12 @@ class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(
         return expectInt
     }
 
+    val empty: ExpectString get() {
+        words.add("empty")
+        verify { subject!!.isEmpty() }
+        return this
+    }
+
     fun match(regex: Regex): ExpectString {
         words.add("match")
         words.add(regex.pattern)
@@ -33,12 +39,6 @@ class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(
         words.add("contain")
         words.add(other)
         verify { subject!!.indexOf(other) >= 0 }
-        return this
-    }
-
-    fun empty(): ExpectString {
-        words.add("empty")
-        verify { subject!!.isEmpty() }
         return this
     }
 

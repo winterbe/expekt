@@ -106,7 +106,7 @@ class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>
         return false
     }
 
-    fun empty(): ExpectMap<K, V> {
+    val empty: ExpectMap<K, V> get() {
         words.add("empty")
         verify { subject!!.isEmpty() }
         return this
