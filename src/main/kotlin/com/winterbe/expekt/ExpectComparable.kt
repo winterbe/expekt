@@ -1,10 +1,16 @@
 package com.winterbe.expekt
 
 /**
+ * Expectation context for `Comparable` values.
+ *
  * @author Benjamin Winterberg
  */
 open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : ExpectAny<T>(subject, flavor) {
 
+    /**
+     * Assert that the subject of this expectation is within the given `min` and `max` value
+     * such as: `min <= subject <= max`
+     */
     open fun within(min: T, max: T): ExpectComparable<T> {
         words.add("within")
         words.add(min.toString())
@@ -13,6 +19,9 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         return this
     }
 
+    /**
+     * Assert that the subject of this expectation is equal or less than the given value.
+     */
     open fun most(other: T): ExpectComparable<T> {
         words.add("most")
         words.add(other.toString())
@@ -20,6 +29,9 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         return this
     }
 
+    /**
+     * Assert that the subject of this expectation is equal or greater than the given value.
+     */
     open fun least(other: T): ExpectComparable<T> {
         words.add("least")
         words.add(other.toString())
@@ -27,6 +39,9 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         return this
     }
 
+    /**
+     * Assert that the subject of this expectation is greater than the given value.
+     */
     open fun above(other: T): ExpectComparable<T> {
         words.add("above")
         words.add(other.toString())
@@ -34,6 +49,9 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         return this
     }
 
+    /**
+     * Assert that the subject of this expectation is less than the given value.
+     */
     open fun below(other: T): ExpectComparable<T> {
         words.add("below")
         words.add(other.toString())
@@ -136,13 +154,13 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
         return this
     }
 
-    override fun identity(other: T?): ExpectComparable<T> {
-        super.identity(other)
+    override fun identity(expected: T?): ExpectComparable<T> {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: T?): ExpectComparable<T> {
-        super.equal(other)
+    override fun equal(expected: T?): ExpectComparable<T> {
+        super.equal(expected)
         return this
     }
 

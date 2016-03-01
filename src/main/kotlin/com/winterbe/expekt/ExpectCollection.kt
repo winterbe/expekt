@@ -186,13 +186,13 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
         return this
     }
 
-    override fun identity(other: Collection<T>?): ExpectCollection<T> {
-        super.identity(other)
+    override fun identity(expected: Collection<T>?): ExpectCollection<T> {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: Collection<T>?): ExpectCollection<T> {
-        super.equal(other)
+    override fun equal(expected: Collection<T>?): ExpectCollection<T> {
+        super.equal(expected)
         return this
     }
 

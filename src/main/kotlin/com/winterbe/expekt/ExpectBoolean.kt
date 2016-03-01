@@ -1,15 +1,23 @@
 package com.winterbe.expekt
 
 /**
+ * Expectation context for `Boolean` values.
+ *
  * @author Benjamin Winterberg
  */
 class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subject, flavor) {
 
+    /**
+     * Assert that the subject of this expectation is `true`.
+     */
     val `true`: Unit get() {
         words.add("true")
         verify { subject == true }
     }
 
+    /**
+     * Assert that the subject of this expectation is `false`.
+     */
     val `false`: Unit get() {
         words.add("false")
         verify { subject == false }
@@ -110,13 +118,13 @@ class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subj
         return this
     }
 
-    override fun identity(other: Boolean?): ExpectBoolean {
-        super.identity(other)
+    override fun identity(expected: Boolean?): ExpectBoolean {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: Boolean?): ExpectBoolean {
-        super.equal(other)
+    override fun equal(expected: Boolean?): ExpectBoolean {
+        super.equal(expected)
         return this
     }
 

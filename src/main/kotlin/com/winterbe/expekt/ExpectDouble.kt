@@ -1,15 +1,20 @@
 package com.winterbe.expekt
 
 /**
+ * Expectation context for `Double` values.
+ *
  * @author Benjamin Winterberg
  */
 class ExpectDouble(subject: Double?, flavor: Flavor) : ExpectComparable<Double>(subject, flavor) {
 
-    fun closeTo(other: Double, delta: Double = 0.0): ExpectDouble {
+    /**
+     * Assert that the subject of this expectation is equal or close to the given value.
+     */
+    fun closeTo(expected: Double, delta: Double = 0.0): ExpectDouble {
         words.add("closeTo")
-        words.add(other.toString())
+        words.add(expected.toString())
         words.add("±" + delta.toString())
-        verify { subject!! >= other - delta && subject <= other + delta }
+        verify { subject!! >= expected - delta && subject <= expected + delta }
         return this
     }
 
@@ -133,13 +138,13 @@ class ExpectDouble(subject: Double?, flavor: Flavor) : ExpectComparable<Double>(
         return this
     }
 
-    override fun identity(other: Double?): ExpectDouble {
-        super.identity(other)
+    override fun identity(expected: Double?): ExpectDouble {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: Double?): ExpectDouble {
-        super.equal(other)
+    override fun equal(expected: Double?): ExpectDouble {
+        super.equal(expected)
         return this
     }
 

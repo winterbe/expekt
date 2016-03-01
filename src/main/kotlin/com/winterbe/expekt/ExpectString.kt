@@ -176,13 +176,13 @@ class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(
         return this
     }
 
-    override fun identity(other: String?): ExpectString {
-        super.identity(other)
+    override fun identity(expected: String?): ExpectString {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: String?): ExpectString {
-        super.equal(other)
+    override fun equal(expected: String?): ExpectString {
+        super.equal(expected)
         return this
     }
 

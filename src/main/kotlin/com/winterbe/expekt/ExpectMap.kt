@@ -219,13 +219,13 @@ class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>
         return this
     }
 
-    override fun identity(other: Map<K, V>?): ExpectMap<K, V> {
-        super.identity(other)
+    override fun identity(expected: Map<K, V>?): ExpectMap<K, V> {
+        super.identity(expected)
         return this
     }
 
-    override fun equal(other: Map<K, V>?): ExpectMap<K, V> {
-        super.equal(other)
+    override fun equal(expected: Map<K, V>?): ExpectMap<K, V> {
+        super.equal(expected)
         return this
     }
 
