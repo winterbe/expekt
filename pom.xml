@@ -54,7 +54,7 @@
         </pluginRepository>
     </pluginRepositories>
     <properties>
-        <kotlin.version>1.0.0</kotlin.version>
+        <kotlin.version>1.0.2</kotlin.version>
         <dokka.version>0.9.7</dokka.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
