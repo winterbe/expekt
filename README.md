@@ -25,7 +25,7 @@ Expekt is available via [Maven Central](https://repo1.maven.org/maven2/com/winte
 <dependency>
     <groupId>com.winterbe</groupId>
     <artifactId>expekt</artifactId>
-    <version>0.2.0</version>
+    <version>0.4.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -33,7 +33,7 @@ Expekt is available via [Maven Central](https://repo1.maven.org/maven2/com/winte
 ##### Gradle
 
 ```groovy
-testCompile "com.winterbe:expekt:0.2.0"
+testCompile "com.winterbe:expekt:0.4.0"
 ```
 
 ### Introduction
