@@ -138,6 +138,14 @@ class ExpectCollectionTest {
     }
 
     @Test
+    fun `null`() {
+        passes { expect(null as Collection<Int>?).to.be.`null` }
+        fails("expect [1, 2, 3] to be null") {
+            expect(listOf(1, 2, 3)).to.be.`null`
+        }
+    }
+
+    @Test
     fun should() {
         listOf(1, 2, 3).should.contain.all.elements(1, 2)
     }

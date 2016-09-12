@@ -132,6 +132,14 @@ class ExpectStringTest {
     }
 
     @Test
+    fun `null`() {
+        passes { expect(null as String?).to.be.`null` }
+        fails("expect abc to be null") {
+            expect("abc").to.be.`null`
+        }
+    }
+
+    @Test
     fun should() {
         "abc".should.startWith("a").and.endWith("bc")
     }

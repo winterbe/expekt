@@ -148,4 +148,10 @@ class ExpectMapTest {
         passes { mapOf(1 to 2).should.not.be.empty }
     }
 
+    @Test
+    fun `null`() {
+        passes { expect(null as Map<Int, Int>?).to.be.`null` }
+        fails("expect {a=1} to be null") { expect(mapOf("a" to 1)).to.be.`null` }
+    }
+
 }

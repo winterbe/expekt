@@ -4,7 +4,7 @@ fun <T> expect(subject: T?): ExpectAny<T?> {
     return ExpectAny(subject, Flavor.EXPECT)
 }
 
-fun expect(subject: Boolean): ExpectBoolean {
+fun expect(subject: Boolean?): ExpectBoolean {
     return ExpectBoolean(subject, Flavor.EXPECT)
 }
 
@@ -16,15 +16,15 @@ fun expect(subject: Double?): ExpectDouble {
     return ExpectDouble(subject, Flavor.EXPECT)
 }
 
-fun expect(subject: String): ExpectString {
+fun expect(subject: String?): ExpectString {
     return ExpectString(subject, Flavor.EXPECT)
 }
 
-fun <T> expect(subject: Collection<T>): ExpectCollection<T> {
+fun <T> expect(subject: Collection<T>?): ExpectCollection<T> {
     return ExpectCollection(subject, Flavor.EXPECT)
 }
 
-fun <K, V> expect(subject: Map<K, V>): ExpectMap<K, V> {
+fun <K, V> expect(subject: Map<K, V>?): ExpectMap<K, V> {
     return ExpectMap(subject, Flavor.EXPECT)
 }
 

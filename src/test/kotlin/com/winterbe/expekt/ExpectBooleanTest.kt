@@ -37,6 +37,14 @@ class ExpectBooleanTest {
     }
 
     @Test
+    fun `null`() {
+        passes { expect(null as Boolean?).to.be.`null` }
+        fails("expect false to be null") {
+            expect(false).to.be.`null`
+        }
+    }
+
+    @Test
     fun should() {
         true.should.be.`true`
     }
