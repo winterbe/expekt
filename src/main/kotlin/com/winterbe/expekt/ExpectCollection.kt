@@ -3,7 +3,7 @@ package com.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Collection<T>>(subject, flavor) {
+class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor, message: String?=null): ExpectAny<Collection<T>>(subject, flavor, message) {
 
     private var anyMode = false
     
@@ -81,7 +81,7 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(subject!!.size, flavor)
+        val expectInt = ExpectComparable(subject!!.size, flavor, message)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
@@ -198,6 +198,11 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
 
     override fun satisfy(predicate: (Collection<T>) -> Boolean): ExpectCollection<T> {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectCollection<T> {
+        super.withMessage(message)
         return this
     }
 }

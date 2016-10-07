@@ -5,7 +5,7 @@ package com.winterbe.expekt
  *
  * @author Benjamin Winterberg
  */
-class ExpectDouble(subject: Double?, flavor: Flavor) : ExpectComparable<Double>(subject, flavor) {
+class ExpectDouble(subject: Double?, flavor: Flavor, message: String?=null) : ExpectComparable<Double>(subject, flavor, message) {
 
     /**
      * Assert that the subject of this expectation is equal or close to the given value.
@@ -150,6 +150,11 @@ class ExpectDouble(subject: Double?, flavor: Flavor) : ExpectComparable<Double>(
 
     override fun satisfy(predicate: (Double) -> Boolean): ExpectDouble {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectDouble {
+        super.withMessage(message)
         return this
     }
 }

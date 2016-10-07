@@ -5,7 +5,7 @@ package com.winterbe.expekt
  *
  * @author Benjamin Winterberg
  */
-class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subject, flavor) {
+class ExpectBoolean(subject: Boolean?, flavor: Flavor, message: String?=null) : ExpectAny<Boolean>(subject, flavor, message) {
 
     /**
      * Assert that the subject of this expectation is `true`.
@@ -130,6 +130,11 @@ class ExpectBoolean(subject: Boolean?, flavor: Flavor) : ExpectAny<Boolean>(subj
 
     override fun satisfy(predicate: (Boolean) -> Boolean): ExpectBoolean {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectBoolean {
+        super.withMessage(message)
         return this
     }
 }
