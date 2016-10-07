@@ -27,4 +27,24 @@ class ExampleTest {
         }
     }
 
+    @Test
+    fun failingTest3Message() {
+        try {
+            expect(3.4,"fail").to.be.closeTo(3.2, delta = 0.1)
+            Assert.fail()
+        } catch(e: AssertionError) {
+            expect(e.message).to.be.equal("fail")
+        }
+    }
+
+    @Test
+    fun failingTest4withMessage() {
+        try {
+            3.4.should.be.withMessage("fail").closeTo(3.2, delta = 0.1)
+            Assert.fail()
+        } catch(e: AssertionError) {
+            expect(e.message).to.be.equal("fail")
+        }
+    }
+
 }

@@ -5,7 +5,7 @@ package com.winterbe.expekt
  *
  * @author Benjamin Winterberg
  */
-open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : ExpectAny<T>(subject, flavor) {
+open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor, message: String?=null) : ExpectAny<T>(subject, flavor, message) {
 
     /**
      * Assert that the subject of this expectation is within the given `min` and `max` value
@@ -166,6 +166,11 @@ open class ExpectComparable<T: Comparable<T>>(subject: T?, flavor: Flavor) : Exp
 
     override fun satisfy(predicate: (T) -> Boolean): ExpectComparable<T> {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectComparable<T> {
+        super.withMessage(message)
         return this
     }
 }

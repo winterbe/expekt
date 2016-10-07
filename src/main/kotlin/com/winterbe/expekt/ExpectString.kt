@@ -3,11 +3,11 @@ package com.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(subject, flavor) {
+class ExpectString(subject: String?, flavor: Flavor, message: String?=null) : ExpectComparable<String>(subject, flavor, message) {
 
     val length: ExpectComparable<Int> get() {
         words.add("length")
-        val expectInt = ExpectComparable(subject!!.length, this.flavor)
+        val expectInt = ExpectComparable(subject!!.length, this.flavor, message)
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
         expectInt.words.removeAt(0)
@@ -188,6 +188,11 @@ class ExpectString(subject: String?, flavor: Flavor) : ExpectComparable<String>(
 
     override fun satisfy(predicate: (String) -> Boolean): ExpectString {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectString {
+        super.withMessage(message)
         return this
     }
 }

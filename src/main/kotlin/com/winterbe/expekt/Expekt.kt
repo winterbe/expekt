@@ -1,35 +1,35 @@
 package com.winterbe.expekt
 
-fun <T> expect(subject: T?): ExpectAny<T?> {
-    return ExpectAny(subject, Flavor.EXPECT)
+fun <T> expect(subject: T?, message: String? = null): ExpectAny<T?> {
+    return ExpectAny(subject, Flavor.EXPECT, message)
 }
 
-fun expect(subject: Boolean?): ExpectBoolean {
-    return ExpectBoolean(subject, Flavor.EXPECT)
+fun expect(subject: Boolean?, message: String? = null): ExpectBoolean {
+    return ExpectBoolean(subject, Flavor.EXPECT, message)
 }
 
-fun <T: Comparable<T>> expect(subject: T?): ExpectComparable<T> {
-    return ExpectComparable(subject, Flavor.EXPECT)
+fun <T : Comparable<T>> expect(subject: T?, message: String? = null): ExpectComparable<T> {
+    return ExpectComparable(subject, Flavor.EXPECT, message)
 }
 
-fun expect(subject: Double?): ExpectDouble {
-    return ExpectDouble(subject, Flavor.EXPECT)
+fun expect(subject: Double?, message: String? = null): ExpectDouble {
+    return ExpectDouble(subject, Flavor.EXPECT, message)
 }
 
-fun expect(subject: String?): ExpectString {
-    return ExpectString(subject, Flavor.EXPECT)
+fun expect(subject: String?, message: String? = null): ExpectString {
+    return ExpectString(subject, Flavor.EXPECT, message)
 }
 
-fun <T> expect(subject: Collection<T>?): ExpectCollection<T> {
-    return ExpectCollection(subject, Flavor.EXPECT)
+fun <T> expect(subject: Collection<T>?, message: String? = null): ExpectCollection<T> {
+    return ExpectCollection(subject, Flavor.EXPECT, message)
 }
 
-fun <T> expect(subject: Sequence<T>?): ExpectCollection<T> {
-    return ExpectCollection(subject?.toList(), Flavor.EXPECT)
+fun <T> expect(subject: Sequence<T>?, message: String? = null): ExpectCollection<T> {
+    return ExpectCollection(subject?.toList(), Flavor.EXPECT, message)
 }
 
-fun <K, V> expect(subject: Map<K, V>?): ExpectMap<K, V> {
-    return ExpectMap(subject, Flavor.EXPECT)
+fun <K, V> expect(subject: Map<K, V>?, message: String? = null): ExpectMap<K, V> {
+    return ExpectMap(subject, Flavor.EXPECT, message)
 }
 
 val <T> T?.should: ExpectAny<T> get() {
@@ -44,7 +44,7 @@ val String?.should: ExpectString get() {
     return ExpectString(this, Flavor.SHOULD)
 }
 
-val <T: Comparable<T>> T?.should: ExpectComparable<T> get() {
+val <T : Comparable<T>> T?.should: ExpectComparable<T> get() {
     return ExpectComparable(this, Flavor.SHOULD)
 }
 

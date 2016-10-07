@@ -3,7 +3,7 @@ package com.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>(subject, flavor) {
+class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor, message: String?=null): ExpectAny<Map<K, V>>(subject, flavor, message) {
 
     private var anyMode = false
 
@@ -114,7 +114,7 @@ class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(subject!!.size, flavor)
+        val expectInt = ExpectComparable(subject!!.size, flavor, message)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
@@ -231,6 +231,11 @@ class ExpectMap<K, V>(subject: Map<K, V>?, flavor: Flavor): ExpectAny<Map<K, V>>
 
     override fun satisfy(predicate: (Map<K, V>) -> Boolean): ExpectMap<K, V> {
         super.satisfy(predicate)
+        return this
+    }
+
+    override fun withMessage(message:String): ExpectMap<K, V> {
+        super.withMessage(message)
         return this
     }
 }

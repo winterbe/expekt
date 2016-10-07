@@ -5,7 +5,7 @@ package com.winterbe.expekt
  *
  * @author Benjamin Winterberg
  */
-open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor) {
+open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor, protected var message: String? = null) {
 
     internal val words = arrayListOf<String>()
 
@@ -45,7 +45,7 @@ open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor)
     /**
      * Assert that the subject of this expectation is an instance of the given type.
      */
-    open fun <S: T> instanceof(type: Class<S>): ExpectAny<T> {
+    open fun <S : T> instanceof(type: Class<S>): ExpectAny<T> {
         words.add("instanceof")
         words.add(type.toString())
         verify { type.isInstance(subject) }
@@ -60,6 +60,11 @@ open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor)
         words.add("identity")
         words.add(expected.toString())
         verify { subject === expected }
+        return this
+    }
+
+    open fun withMessage(message:String): ExpectAny<T> {
+        this.message = message
         return this
     }
 
@@ -98,7 +103,8 @@ open class ExpectAny<T>(protected val subject: T?, protected val flavor: Flavor)
     }
 
     private fun fail() {
-        val message = words.joinToString(separator = " ")
+
+        val message = if(this.message!=null) this.message else words.joinToString(separator = " ")
         throw AssertionError(message)
     }
 
