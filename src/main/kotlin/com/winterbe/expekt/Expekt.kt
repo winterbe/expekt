@@ -32,6 +32,10 @@ fun <K, V> expect(subject: Map<K, V>?): ExpectMap<K, V> {
     return ExpectMap(subject, Flavor.EXPECT)
 }
 
+fun expect(subject: () -> Unit): ExpectClosure {
+    return ExpectClosure(subject, Flavor.EXPECT)
+}
+
 val <T> T?.should: ExpectAny<T> get() {
     return ExpectAny(this, Flavor.SHOULD)
 }
@@ -62,4 +66,8 @@ val <T> Sequence<T>?.should: ExpectCollection<T> get() {
 
 val <K, V> Map<K, V>?.should: ExpectMap<K, V> get() {
     return ExpectMap(this, Flavor.SHOULD)
+}
+
+val (() -> Unit).should: ExpectClosure get() {
+    return ExpectClosure(this, Flavor.SHOULD)
 }
