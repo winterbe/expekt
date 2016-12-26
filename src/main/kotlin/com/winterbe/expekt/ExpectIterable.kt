@@ -3,44 +3,44 @@ package com.winterbe.expekt
 /**
  * @author Benjamin Winterberg
  */
-class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Collection<T>>(subject, flavor) {
+class ExpectIterable<T>(subject: Iterable<T>?, flavor: Flavor): ExpectAny<Iterable<T>>(subject, flavor) {
 
     private var anyMode = false
     
     private var haveMode = false
 
-    val any: ExpectCollection<T> get() {
+    val any: ExpectIterable<T> get() {
         words.add("any")
         anyMode = true
         return this
     }
 
-    val all: ExpectCollection<T> get() {
+    val all: ExpectIterable<T> get() {
         words.add("all")
         anyMode = false
         return this
     }
 
-    override val have: ExpectCollection<T> get() {
+    override val have: ExpectIterable<T> get() {
         words.add("have")
         haveMode = true
         return this
     }
 
-    val contain: ExpectCollection<T> get() {
+    val contain: ExpectIterable<T> get() {
         words.add("contain")
         haveMode = false
         return this
     }
 
-    fun contain(other: T): ExpectCollection<T> {
+    fun contain(other: T): ExpectIterable<T> {
         words.add("contain")
         words.add(other.toString())
         verify { subject!!.contains(other) }
         return this
     }
 
-    fun elements(vararg elements: T): ExpectCollection<T> {
+    fun elements(vararg elements: T): ExpectIterable<T> {
         words.add("elements")
         words.add(elements.toList().toString())
         if (anyMode) {
@@ -52,7 +52,7 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
     }
 
     private fun containsAll(elements: Array<out T>): Boolean {
-        if (haveMode && elements.size != subject!!.size) {
+        if (haveMode && elements.count() != subject!!.count()) {
             return false
         }
         for (element in elements) {
@@ -73,15 +73,15 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
         return false
     }
 
-    val empty: ExpectCollection<T> get() {
+    val empty: ExpectIterable<T> get() {
         words.add("empty")
-        verify { subject!!.isEmpty() }
+        verify { subject!!.empty() }
         return this
     }
 
     val size: ExpectComparable<Int> get() {
         words.add("size")
-        val expectInt = ExpectComparable(subject!!.size, flavor)
+        val expectInt = ExpectComparable(subject!!.count(), flavor)
         expectInt.negated = negated
         expectInt.words.addAll(words)
         expectInt.words.removeAt(0)
@@ -89,114 +89,114 @@ class ExpectCollection<T>(subject: Collection<T>?, flavor: Flavor): ExpectAny<Co
         return expectInt
     }
 
-    fun size(size: Int): ExpectCollection<T> {
+    fun size(size: Int): ExpectIterable<T> {
         words.add("size")
         words.add(size.toString())
-        verify { subject!!.size == size }
+        verify { subject!!.count() == size }
         return this
     }
 
-    override val to: ExpectCollection<T> get() {
+    override val to: ExpectIterable<T> get() {
         super.to
         return this
     }
 
-    override val be: ExpectCollection<T> get() {
+    override val be: ExpectIterable<T> get() {
         super.be
         return this
     }
 
-    override val been: ExpectCollection<T> get() {
+    override val been: ExpectIterable<T> get() {
         super.been
         return this
     }
 
-    override val that: ExpectCollection<T> get() {
+    override val that: ExpectIterable<T> get() {
         super.that
         return this
     }
 
-    override val which: ExpectCollection<T> get() {
+    override val which: ExpectIterable<T> get() {
         super.which
         return this
     }
 
-    override val and: ExpectCollection<T> get() {
+    override val and: ExpectIterable<T> get() {
         super.and
         return this
     }
 
-    override val has: ExpectCollection<T> get() {
+    override val has: ExpectIterable<T> get() {
         super.has
         return this
     }
 
-    override val with: ExpectCollection<T> get() {
+    override val with: ExpectIterable<T> get() {
         super.with
         return this
     }
 
-    override val at: ExpectCollection<T> get() {
+    override val at: ExpectIterable<T> get() {
         super.at
         return this
     }
 
-    override val a: ExpectCollection<T> get() {
+    override val a: ExpectIterable<T> get() {
         super.a
         return this
     }
 
-    override val an: ExpectCollection<T> get() {
+    override val an: ExpectIterable<T> get() {
         super.an
         return this
     }
 
-    override val of: ExpectCollection<T> get() {
+    override val of: ExpectIterable<T> get() {
         super.of
         return this
     }
 
-    override val same: ExpectCollection<T> get() {
+    override val same: ExpectIterable<T> get() {
         super.same
         return this
     }
 
-    override val the: ExpectCollection<T> get() {
+    override val the: ExpectIterable<T> get() {
         super.the
         return this
     }
 
-    override val `is`: ExpectCollection<T> get() {
+    override val `is`: ExpectIterable<T> get() {
         super.`is`
         return this
     }
 
-    override val not: ExpectCollection<T> get() {
+    override val not: ExpectIterable<T> get() {
         super.not
         return this
     }
 
-    override val `null`: ExpectCollection<T> get() {
+    override val `null`: ExpectIterable<T> get() {
         super.`null`
         return this
     }
 
-    override fun <S : Collection<T>> instanceof(type: Class<S>): ExpectCollection<T> {
+    override fun <S : Iterable<T>> instanceof(type: Class<S>): ExpectIterable<T> {
         super.instanceof(type)
         return this
     }
 
-    override fun identity(expected: Collection<T>?): ExpectCollection<T> {
+    override fun identity(expected: Iterable<T>?): ExpectIterable<T> {
         super.identity(expected)
         return this
     }
 
-    override fun equal(expected: Collection<T>?): ExpectCollection<T> {
+    override fun equal(expected: Iterable<T>?): ExpectIterable<T> {
         super.equal(expected)
         return this
     }
 
-    override fun satisfy(predicate: (Collection<T>) -> Boolean): ExpectCollection<T> {
+    override fun satisfy(predicate: (Iterable<T>) -> Boolean): ExpectIterable<T> {
         super.satisfy(predicate)
         return this
     }
