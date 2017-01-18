@@ -10,12 +10,16 @@ class ExpectClosureTest {
             expect({ throw NullPointerException() }).raise(NullPointerException::class)
             expect({ throw CustomException() }).raise(CustomException::class)
         }
-        fails("expect closure raise ${NullPointerException::class.java.toString()}") {
+        fails("expect closure raise ${NullPointerException::class.java} but nothing to thrown") {
             expect({ /* nothing to thrown */ }).raise(NullPointerException::class)
+        }
+        fails("expect closure raise ${NullPointerException::class.java} but actual thrown ${CustomException::class.java}") {
             expect({ throw CustomException() }).raise(NullPointerException::class)
         }
-        fails("expect closure raise ${CustomException::class.java.toString()}") {
+        fails("expect closure raise ${CustomException::class.java} but nothing to thrown") {
             expect({ /* nothing to thrown */ }).raise(CustomException::class)
+        }
+        fails("expect closure raise ${CustomException::class.java} but actual thrown ${NullPointerException::class.java}") {
             expect({ throw NullPointerException() }).raise(CustomException::class)
         }
     }
@@ -26,7 +30,7 @@ class ExpectClosureTest {
             expect({ throw NullPointerException() }).raiseAny()
             expect({ throw CustomException() }).raiseAny()
         }
-        fails("expect closure raise some exception") {
+        fails("expect closure raise some exception but nothing to thrown") {
             expect({ /* nothing to thrown */ }).raiseAny()
         }
     }
