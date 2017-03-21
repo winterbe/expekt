@@ -1,4 +1,4 @@
-# Expekt [![Travic CI](https://travis-ci.org/winterbe/expekt.svg?branch=master)](https://travis-ci.org/winterbe/expekt)
+# Expekt [![Travic CI](https://travis-ci.org/winterbe/expekt.svg?branch=master)](https://travis-ci.org/winterbe/expekt) [![Maven Central](https://img.shields.io/maven-central/v/com.winterbe/expekt.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.winterbe%22%20AND%20a%3A%expekt%22)
 
 Expekt is a (work in progress) BDD assertion library for [Kotlin](http://kotlinlang.org/), inspired by [Chai.js](http://chaijs.com/). It works with your favorite test runner such as [JUnit](http://junit.org/) and [Spek](http://jetbrains.github.io/spek/).
 
