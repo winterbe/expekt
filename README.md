@@ -94,8 +94,10 @@ listOf(1, 2, 3).should.contain(3).and.have.length.above(2)
 listOf(1, 2, 3).should.contain.any.elements(1, 3, 4)
 listOf(1, 2, 3).should.have.all.elements(1, 2, 3)
 mapOf("foo" to "bar", "bar" to "foo").should.contain("foo" to "bar")
-expect({ throw NullPointerException() }).raise(NullPointerException::class)
+({ throw NullPointerException() }).should.raise(NullPointerException::class)
 ({ throw NullPointerException() }).should.raiseAny()
+({ throw NotImplementedError() }).should.raise(NotImplementedError::class)
+({ throw NotImplementedError() }).should.raiseAny()
 ```
 
 Example assertions using the `expect` function:
@@ -115,6 +117,8 @@ expect(listOf(1, 2, 3)).to.have.all.elements(1, 2, 3)
 expect(mapOf("foo" to "bar", "bar" to "foo")).to.contain("foo" to "bar")
 expect({ throw NullPointerException() }).raise(NullPointerException::class)
 expect({ throw NullPointerException() }).raiseAny()
+expect({ throw NotImplementedError() }).raise(NotImplementedError::class)
+expect({ throw NotImplementedError() }).raiseAny()
 ```
 
 ### License
