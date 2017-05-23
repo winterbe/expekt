@@ -27,16 +27,16 @@ class ExpectClosure(protected val subject: () -> Unit, protected val flavor: Fla
     fun <T : Throwable> raise(expected: KClass<T>): ExpectClosure {
         var success = false
         val expectedClass = expected.java
-        var actual: Exception? = null
+        var actual: Throwable? = null
 
         words.add("raise")
         words.add(expectedClass.toString())
 
         try {
             subject()
-        } catch (e: Exception) {
-            success = expectedClass.equals(e.javaClass)
-            if (!success) actual = e
+        } catch (t: Throwable) {
+            success = expectedClass.equals(t.javaClass)
+            if (!success) actual = t
         } finally {
             if (!success) fail(actual)
         }
@@ -52,7 +52,7 @@ class ExpectClosure(protected val subject: () -> Unit, protected val flavor: Fla
 
         try {
             subject()
-        } catch (e: Exception) {
+        } catch (t: Throwable) {
             success = true
         } finally {
             if (!success) fail(null)
@@ -61,7 +61,7 @@ class ExpectClosure(protected val subject: () -> Unit, protected val flavor: Fla
         return this
     }
 
-    private fun fail(actual: Exception?) {
+    private fun fail(actual: Throwable?) {
         actual?.let {
             words.add("but actual thrown")
             words.add(it.javaClass.toString())
